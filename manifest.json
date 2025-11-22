@@ -1,0 +1,71 @@
+{
+  "name": "Erpalio",
+  "short_name": "Erpalio",
+  "description": "the next generation of ERP software",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "theme_color": "#007aff",
+  "screenshots": [
+    {
+      "src": "icons/icon-512.webp",
+      "sizes": "512x512",
+      "type": "webp"
+    },
+    {
+      "src": "icons/icon-512.webp",
+      "sizes": "512x512",
+      "type": "webp",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "url": "/dashboard",
+      "pixel-icon": "icons/icon-96.webp",
+      "description": "View your dashboard"
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+erp",
+      "url": "/%s"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/icons/128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

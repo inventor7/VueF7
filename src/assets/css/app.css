@@ -1,0 +1,11 @@
+@import "framework7/css/bundle";
+
+@import "tailwindcss";
+
+.toolbar.tabbar .tab-link .icon.material-icons {
+    font-family: "Material Icons Outlined";
+}
+
+.toolbar.tabbar .tab-link.tab-link-active .icon.material-icons {
+    font-family: "Material Icons" !important;
+}

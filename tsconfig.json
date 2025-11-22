@@ -1,0 +1,27 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "./typed-router.d.ts",
+    "vite.config.ts",
+    "src/types/**/*"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/modules/*": ["./src/modules/*"],
+      "@/shared/*": ["./src/shared/*"]
+    },
+    "allowJs": true,
+    "types": [
+      "node",
+      "@intlify/unplugin-vue-i18n/messages",
+      "./auto-imports.d.ts",
+      "./components.d.ts"
+    ]
+  }
+}
