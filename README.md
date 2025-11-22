@@ -11,6 +11,11 @@ VueF7 is a modern, modular mobile-first application built with Vue 3, Framework7
 - Pinia for state management
 - Vue I18n for internationalization
 - Tailwind CSS for styling
+- @intlify/unplugin-vue-i18n for i18n resources compilation
+- unplugin-vue-components for automatic component imports
+- unplugin-auto-import for automatic imports
+- unplugin-imagemin for image optimization (on build)
+- unplugin-turbo-console for enhanced console logging
 
 ## Project Structure
 
@@ -87,6 +92,28 @@ pnpm install
 ### Auto-imports
 - `useLocalStorage`, `computed`, `provide`, `inject`, `onMounted`, and other Vue composables are auto-imported
 - No need to manually import these functions from 'vue' or other libraries
+- Uses unplugin-auto-import for automatic API imports from Vue, Pinia, Vue Router, VueUse, and Vue I18n
+- Framework7 specific auto-imports are configured through the getFramework7AutoImports function
+
+### Component Auto-imports
+- Uses unplugin-vue-components for automatic component discovery and imports
+- Components from src/components, src/views, and module directories are automatically imported
+- Supports .vue, .ts, and .tsx component files
+- Uses Framework7VueResolver for Framework7 component resolution
+
+### Internationalization (i18n)
+- Uses Vue I18n for internationalization with @intlify/unplugin-vue-i18n plugin
+- Locale files are located in src/locales/ directory
+- Supports automatic compilation of i18n resources
+
+### Image Optimization
+- Uses unplugin-imagemin for automatic image optimization
+- Supports optimization for JPG, JPEG, PNG, and WebP formats
+- Configured with quality settings and progressive loading for optimized assets
+
+### Development Tools
+- Uses unplugin-turbo-console for enhanced console logging during development
+- Provides better error tracking and debugging capabilities
 
 ## Capacitor Integration
 
