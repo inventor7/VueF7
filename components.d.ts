@@ -15,10 +15,12 @@ declare module 'vue' {
     F7Icon: typeof import('framework7-vue')['f7Icon']
     F7Link: typeof import('framework7-vue')['f7Link']
     F7Navbar: typeof import('framework7-vue')['f7Navbar']
+    F7NavRight: typeof import('framework7-vue')['f7NavRight']
     F7Page: typeof import('framework7-vue')['f7Page']
     F7Toolbar: typeof import('framework7-vue')['f7Toolbar']
     F7View: typeof import('framework7-vue')['f7View']
     F7Views: typeof import('framework7-vue')['f7Views']
     Home: typeof import('./src/modules/home/views/Home.vue')['default']
+    HomePanel: typeof import('./src/modules/home/views/Home/HomePanel.vue')['default']
   }
 }
