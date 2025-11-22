@@ -1798,6 +1798,244 @@
     "__source": "dir"
   },
   {
+    "name": "default",
+    "as": "ARCHITECTURE",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/ARCHITECTURE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "products",
+    "as": "products",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/ARCHITECTURE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "syncQueue",
+    "as": "syncQueue",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/ARCHITECTURE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "syncMetadata",
+    "as": "syncMetadata",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/ARCHITECTURE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "syncConflicts",
+    "as": "syncConflicts",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/ARCHITECTURE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "initWebDatabase",
+    "as": "initWebDatabase",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/ARCHITECTURE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "SyncMetrics",
+    "as": "SyncMetrics",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/ARCHITECTURE.md",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "PerformanceMetrics",
+    "as": "PerformanceMetrics",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/ARCHITECTURE.md",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "default",
+    "as": "iMPLEMENTATIONGUIDE",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "getCurrentPlatform",
+    "as": "getCurrentPlatform",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "isNativePlatform",
+    "as": "isNativePlatform",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "supportsNativeSQLite",
+    "as": "supportsNativeSQLite",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "nativeSQLite",
+    "as": "nativeSQLite",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "webSQLite",
+    "as": "webSQLite",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "dbClient",
+    "as": "dbClient",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "getDb",
+    "as": "getDb",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "Collection",
+    "as": "Collection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "Collection",
+    "as": "Collection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "type": true,
+    "declarationType": "class",
+    "__source": "dir"
+  },
+  {
+    "name": "createCollection",
+    "as": "createCollection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "productsCollection",
+    "as": "productsCollection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "productCategoriesCollection",
+    "as": "productCategoriesCollection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "productBrandsCollection",
+    "as": "productBrandsCollection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "partnersCollection",
+    "as": "partnersCollection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "saleOrdersCollection",
+    "as": "saleOrdersCollection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "stockPickingsCollection",
+    "as": "stockPickingsCollection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "planningsCollection",
+    "as": "planningsCollection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "planningUserEventsCollection",
+    "as": "planningUserEventsCollection",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "collections",
+    "as": "collections",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "SyncQueueProcessor",
+    "as": "SyncQueueProcessor",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "SyncQueueProcessor",
+    "as": "SyncQueueProcessor",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "type": true,
+    "declarationType": "class",
+    "__source": "dir"
+  },
+  {
+    "name": "syncQueueProcessor",
+    "as": "syncQueueProcessor",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "SyncOrchestrator",
+    "as": "SyncOrchestrator",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "SyncOrchestrator",
+    "as": "SyncOrchestrator",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "type": true,
+    "declarationType": "class",
+    "__source": "dir"
+  },
+  {
+    "name": "syncOrchestrator",
+    "as": "syncOrchestrator",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "migrateDex",
+    "as": "migrateDex",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "__source": "dir"
+  },
+  {
+    "name": "Platform",
+    "as": "Platform",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "CollectionOptions",
+    "as": "CollectionOptions",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/IMPLEMENTATION_GUIDE.md",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "useProducts",
+    "as": "useProducts",
+    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/database/docs/TODO.md",
+    "__source": "dir"
+  },
+  {
     "name": "useLanguageStore",
     "as": "useLanguageStore",
     "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/stores/useLanguage.stores.ts",
