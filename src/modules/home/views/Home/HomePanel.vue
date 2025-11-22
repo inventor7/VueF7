@@ -51,7 +51,6 @@
 import { f7Popup } from "framework7-vue";
 
 const appTheme = useAppTheme();
-console.log("Hi theme");
 </script>
 
 <style scoped>

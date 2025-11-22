@@ -12,7 +12,6 @@
           icon-ios="f7:sparkles"
           icon-md="material:auto_awesome"
           popup-open="#theme-popup"
-          @click="console.log('clickedd')"
         ></F7Link>
       </F7NavRight>
     </F7Navbar>

@@ -3,7 +3,7 @@ import path from "path";
 
 import vue from "@vitejs/plugin-vue";
 import tailwindcss from "@tailwindcss/vite";
-// import vueDevTools from "vite-plugin-vue-devtools";
+import vueDevTools from "vite-plugin-vue-devtools";
 
 import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite";
 import Components from "unplugin-vue-components/vite";
@@ -18,8 +18,6 @@ import {
 
 const SRC_DIR = path.resolve(__dirname, "./src");
 const SRC_LOCALES = path.resolve(__dirname, "./src/locales/**");
-const PUBLIC_DIR = path.resolve(__dirname, "./public");
-const BUILD_DIR = path.resolve(__dirname, "./dist");
 
 export default defineConfig({
   plugins: [
@@ -33,7 +31,7 @@ export default defineConfig({
 
     tailwindcss(),
 
-    // vueDevTools({}),
+    vueDevTools({}),
     TurboConsole(),
     VueI18nPlugin({
       include: SRC_LOCALES,
@@ -108,11 +106,50 @@ export default defineConfig({
   ],
 
   base: "",
-  publicDir: PUBLIC_DIR,
   build: {
-    outDir: BUILD_DIR,
-    assetsInlineLimit: 0,
-    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        advancedChunks: {
+          groups: [
+            {
+              name: "vue-ecosystem",
+              test: /[\\/]node_modules[\\/](vue|pinia|vue-router|@vueuse)[\\/]/,
+            },
+            {
+              name: "f7-core",
+              test: /[\\/]node_modules[\\/]framework7[\\/](lite|shared|utils)/,
+            },
+            {
+              name: "f7-vue",
+              test: /[\\/]node_modules[\\/]framework7-vue[\\/]/,
+            },
+            {
+              name: "f7-heavy",
+              test: /[\\/]node_modules[\\/]framework7[\\/](components[\\/](calendar|color-picker|photo-browser|autocomplete)|modules[\\/](keyboard|mousewheel))/,
+            },
+            {
+              name: "styles",
+              test: /[\\/]node_modules[\\/](tailwind|@tailwindcss|vue-i18n)[\\/]/,
+            },
+            {
+              name: "vendor",
+              test: /[\\/]node_modules[\\/]/,
+            },
+            {
+              name: "shared",
+              test: /[\\/]src[\\/]shared[\\/]/,
+            },
+            {
+              name: "app-modules",
+              test: /[\\/]src[\\/]modules[\\/]/,
+              maxSize: 50 * 1024,
+            },
+          ],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 500,
+    commonjsOptions: { include: [/node_modules/] },
   },
 
   resolve: {

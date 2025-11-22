@@ -3,7 +3,7 @@
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     // TypeScript configuration files
-    "tsconfig.json": "tsconfig.*.json, tsconfig.*.tsbuildinfo, auto-imports.d.ts, components.d.ts, env.d.ts ,tsconfig.tsbuildinfo",
+    "tsconfig.json": "tsconfig.*.json, tsconfig.*.tsbuildinfo,  env.d.ts ,tsconfig.tsbuildinfo",
 
     // Vite configuration files
     "vite.config.ts": "vite.config.*.ts, vite.*.config.ts",
