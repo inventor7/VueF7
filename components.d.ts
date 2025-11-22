@@ -12,7 +12,6 @@ declare module 'vue' {
     F7App: typeof import('framework7-vue')['f7App']
     F7Badge: typeof import('framework7-vue')['f7Badge']
     F7Block: typeof import('framework7-vue')['f7Block']
-    F7BlockTitle: typeof import('framework7-vue')['f7BlockTitle']
     F7Icon: typeof import('framework7-vue')['f7Icon']
     F7Link: typeof import('framework7-vue')['f7Link']
     F7Navbar: typeof import('framework7-vue')['f7Navbar']
