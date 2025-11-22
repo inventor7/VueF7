@@ -1,7 +1,7 @@
 {
-  "cwd": "C:\\Users\\PC\\code\\ayb\\erpalio",
+  "cwd": "c:/Users/PC/code/ayb/presalio-2.0",
   "type": ["capacitor"],
-  "name": "erpalio",
+  "name": "VueF7",
   "framework": "vue",
   "template": "tabs",
   "bundler": "vite",
@@ -72,7 +72,7 @@
       "typography"
     ]
   },
-  "pkg": "io.aybinv7.erpalio",
+  "pkg": "io.aybinv7.VueF7",
   "capacitor": {
     "platforms": ["ios", "android"]
   }

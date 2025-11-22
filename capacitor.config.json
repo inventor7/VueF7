@@ -1,6 +1,6 @@
 {
-  "appId": "io.aybinv7.erpalio",
-  "appName": "erpalio",
+  "appId": "io.aybinv7.vue-f7",
+  "appName": "VueF7",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",

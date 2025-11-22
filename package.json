@@ -1,10 +1,13 @@
 {
-  "name": "erpalio",
+  "name": "vue-f7",
   "private": true,
   "type": "module",
-  "version": "1.0.0",
-  "description": "erpalio",
-  "repository": "",
+  "version": "1.0",
+  "description": "Presalio 2.0 - A modern mobile-first application built with Vue 3, Framework7, and Capacitor for cross-platform deployment",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayb/presalio-2.0.git"
+ },
   "license": "UNLICENSED",
   "scripts": {
     "start": "npm run dev",

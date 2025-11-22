@@ -6,7 +6,7 @@ export const framework7 = (): Framework7Parameters => {
   const device = getDevice();
   const appTheme = useAppThemeProvider();
   return {
-    name: "Erpalio",
+    name: "VueF7",
 
     theme: appTheme.value.theme,
     darkMode: appTheme.value.darkMode,

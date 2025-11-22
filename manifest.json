@@ -1,7 +1,7 @@
 {
-  "name": "Erpalio",
-  "short_name": "Erpalio",
-  "description": "the next generation of ERP software",
+  "name": "VueF7",
+  "short_name": "VueF7",
+  "description": "A modern mobile application built with Vue.js and Framework7",
   "lang": "en-US",
   "start_url": "/",
   "display": "standalone",

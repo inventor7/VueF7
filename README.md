@@ -1,162 +1,123 @@
-# erpalio
+# VueF7
 
-## Framework7 CLI Options
+VueF7 is a modern, modular mobile-first application built with Vue 3, Framework7, and Capacitor for cross-platform deployment. This project follows a modular architecture with TypeScript, Pinia for state management, Vue I18n for internationalization, and Tailwind CSS for styling.
 
-Framework7 app created with following options:
+## Tech Stack
+
+- Vue 3 with TypeScript
+- Framework7 (lite-bundle) with Vue integration
+- Vite as bundler
+- Capacitor for mobile app builds (iOS/Android)
+- Pinia for state management
+- Vue I18n for internationalization
+- Tailwind CSS for styling
+
+## Project Structure
+
+The project follows a modular architecture:
 
 ```
-{
-  "cwd": "C:\\Users\\PC\\code\\ayb\\erpalio",
-  "type": [
-    "capacitor"
-  ],
-  "name": "erpalio",
-  "framework": "vue",
-  "template": "tabs",
-  "bundler": "vite",
-  "cssPreProcessor": "less",
-  "theming": {
-    "customColor": false,
-    "color": "#007aff",
-    "darkMode": true,
-    "iconFonts": true
-  },
-  "customBuild": true,
-  "customBuildConfig": {
-    "rtl": false,
-    "darkTheme": true,
-    "lightTheme": true,
-    "themes": [
-      "ios",
-      "md"
-    ],
-    "components": [
-      "dialog",
-      "popup",
-      "login-screen",
-      "popover",
-      "actions",
-      "sheet",
-      "toast",
-      "preloader",
-      "progressbar",
-      "sortable",
-      "swipeout",
-      "accordion",
-      "contacts-list",
-      "virtual-list",
-      "list-index",
-      "timeline",
-      "tabs",
-      "panel",
-      "card",
-      "chip",
-      "form",
-      "input",
-      "checkbox",
-      "radio",
-      "toggle",
-      "range",
-      "stepper",
-      "smart-select",
-      "grid",
-      "calendar",
-      "picker",
-      "infinite-scroll",
-      "pull-to-refresh",
-      "data-table",
-      "fab",
-      "searchbar",
-      "messages",
-      "messagebar",
-      "swiper",
-      "photo-browser",
-      "notification",
-      "autocomplete",
-      "tooltip",
-      "gauge",
-      "skeleton",
-      "color-picker",
-      "treeview",
-      "text-editor",
-      "area-chart",
-      "pie-chart",
-      "breadcrumbs",
-      "typography"
-    ]
-  },
-  "pkg": "io.aybinv7.erpalio",
-  "capacitor": {
-    "platforms": [
-      "ios",
-      "android"
-    ]
-  }
-}
+src/
+├── modules/{module-name}/
+│   ├── components/
+│   ├── composables/
+│   ├── router/
+│   │   └── routes/
+│   ├── services/
+│   ├── stores/
+│   └── views/
+├── shared/
+│   ├── components/
+│   ├── composables/
+│   ├── services/
+│   ├── stores/
+│   └── utils/
+├── plugins/
+├── router/
+└── assets/
 ```
 
 ## Install Dependencies
 
-First of all we need to install dependencies, run in terminal
+First, install dependencies using pnpm:
+
+```bash
+pnpm install
 ```
-npm install
-```
 
-## NPM Scripts
+## Build/Lint/Test Commands
 
-* 🔥 `start` - run development server
-* 🔧 `dev` - run development server
-* 🔧 `build` - build web app for production
-* 📱 `build-capacitor-ios` - build app and copy it to iOS capacitor project
-* 📱 `build-capacitor-android` - build app and copy it to Android capacitor project
+### Development
+- `pnpm run dev` - Start development server
+- `pnpm start` - Alias for development server (runs `npm run dev`)
 
-## Vite
+### Build
+- `pnpm run build` - Build web app for production (runs with type checking)
+- `pnpm run build-only` - Build web app without type checking
+- `pnpm run build-capacitor-ios` - Build and copy to iOS capacitor project
+- `pnpm run build-capacitor-android` - Build and copy to Android capacitor project
+- `pnpm run ios` - Build and copy to iOS capacitor project
+- `pnpm run ios-open` - Build, copy to iOS, and open in Xcode
+- `pnpm run android` - Build and copy to Android capacitor project
+- `pnpm run android-open` - Build, copy to Android, and open in Android Studio
 
-There is a [Vite](https://vitejs.dev) bundler setup. It compiles and bundles all "front-end" resources. You should work only with files located in `/src` folder. Vite config located in `vite.config.js`.
-## Capacitor
+### Preview
+- `pnpm run preview` - Preview production build locally on port 4173
 
-This project created with Capacitor support. And first thing required before start is to add capacitor platforms, run in terminal:
+### Type Checking
+- `pnpm run type-check` - Run TypeScript type checking (vue-tsc --noEmit)
 
-```
+### Other Commands
+- `pnpm run postinstall` - Copy font files from node_modules to src/fonts/
+
+## Architecture
+
+### Modular Structure
+- Each feature is organized in its own module within `src/modules/{module-name}/`
+- Each module contains components, composables, router, services, stores, and views directories
+- Route parameter arrays are named as `{module}Routes` (e.g., `homeRoutes`, `aboutRoutes`)
+
+### Code Style Guidelines
+- Use `@/*` alias for paths relative to `src/` directory (e.g., `@/modules/home/views/Home.vue`)
+- Use `@modules/*` alias for paths relative to `src/modules/*` directory
+- Vue components use PascalCase (e.g., `Home.vue`, `About.vue`)
+- Composables follow `use{Feature}` pattern (e.g., `useAppTheme`, `useLanguageStore`)
+- Store files use `use{Feature}.stores.ts` pattern (note the plural "stores")
+
+### Auto-imports
+- `useLocalStorage`, `computed`, `provide`, `inject`, `onMounted`, and other Vue composables are auto-imported
+- No need to manually import these functions from 'vue' or other libraries
+
+## Capacitor Integration
+
+This project supports mobile app builds for both iOS and Android using Capacitor:
+
+1. Add capacitor platforms:
+```bash
 npx cap add ios && npx cap add android
 ```
 
-Check out [official Capacitor documentation](https://capacitorjs.com) for more examples and usage examples.
+2. Build for mobile:
+```bash
+pnpm run ios        # Build and copy to iOS
+pnpm run android    # Build and copy to Android
+```
+
+Check out [official Capacitor documentation](https://capacitorjs.com) for more examples and usage.
 
 ## Assets
 
-Assets (icons, splash screens) source images located in `assets-src` folder. To generate your own icons and splash screen images, you will need to replace all assets in this directory with your own images (pay attention to image size and format), and run the following command in the project directory:
-
-```
-framework7 assets
-```
-
-Or launch UI where you will be able to change icons and splash screens:
-
-```
-framework7 assets --ui
-```
-
-## Capacitor Assets
-
-Capacitor assets are located in `resources` folder which is intended to be used with `cordova-res` tool. To generate  mobile apps assets run in terminal:
-```
-npx cordova-res
-```
-
-Check out [official cordova-res documentation](https://github.com/ionic-team/cordova-res) for more usage examples.
+Assets (icons, splash screens) source images are located in the public directory. The project includes icons in various sizes in `public/icons/` and native assets in `public/native/`.
 
 ## Documentation & Resources
 
 * [Framework7 Core Documentation](https://framework7.io/docs/)
 * [Framework7 Vue Documentation](https://framework7.io/vue/)
+* [Vue 3 Documentation](https://vuejs.org/)
+* [Vite Documentation](https://vitejs.dev/)
+* [Capacitor Documentation](https://capacitorjs.com/)
+* [Pinia Documentation](https://pinia.vuejs.org/)
 
+## Contributing
 
-* [Framework7 Icons Reference](https://framework7.io/icons/)
-* [Community Forum](https://forum.framework7.io)
-
-## Support Framework7
-
-Love Framework7? Support project by donating or pledging on:
-- Patreon: https://patreon.com/framework7
-- OpenCollective: https://opencollective.com/framework7
+This project follows a modular architecture designed to scale with multiple developers. Each feature module is self-contained, making it easy for multiple developers to work simultaneously without conflicts.
