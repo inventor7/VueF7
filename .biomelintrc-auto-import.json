@@ -139,6 +139,7 @@
       "shallowReactive",
       "shallowReadonly",
       "shallowRef",
+      "sqlLitePlugin",
       "storeToRefs",
       "syncRef",
       "syncRefs",

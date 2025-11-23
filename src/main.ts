@@ -6,6 +6,7 @@ import App from "./App.vue";
 
 import pinia from "./plugins/pinia.plugin";
 import i18n from "./plugins/i18n.plugin";
+import sqLite from "./plugins/sqlLite.plugin";
 
 import "./assets/css/icons.css";
 import "./assets/css/app.css";
@@ -15,6 +16,7 @@ const app = createApp(App);
 Framework7.use(Framework7Vue);
 registerComponents(app);
 
+app.use(sqLite);
 app.use(pinia);
 app.use(i18n);
 

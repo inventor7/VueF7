@@ -1669,130 +1669,136 @@
   {
     "name": "default",
     "as": "routes",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/modules/home/router/routes/index.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/router/routes/index.ts",
     "__source": "dir"
   },
   {
     "name": "default",
     "as": "capacitorPlugin",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/plugins/capacitor.plugin.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/capacitor.plugin.ts",
     "__source": "dir"
   },
   {
     "name": "useAndroidBackButton",
     "as": "useAndroidBackButton",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/plugins/capcitor/useAndroidBackButton.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/capcitor/useAndroidBackButton.ts",
     "__source": "dir"
   },
   {
     "name": "useKeyboard",
     "as": "useKeyboard",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/plugins/capcitor/useKeyboard.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/capcitor/useKeyboard.ts",
     "__source": "dir"
   },
   {
     "name": "useSplashscreen",
     "as": "useSplashscreen",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/plugins/capcitor/useSplashScreen.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/capcitor/useSplashScreen.ts",
     "__source": "dir"
   },
   {
     "name": "framework7",
     "as": "framework7",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/plugins/framework7.plugin.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/framework7.plugin.ts",
     "__source": "dir"
   },
   {
     "name": "default",
     "as": "i18nPlugin",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/plugins/i18n.plugin.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/i18n.plugin.ts",
     "__source": "dir"
   },
   {
     "name": "default",
     "as": "piniaPlugin",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/plugins/pinia.plugin.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/pinia.plugin.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "default",
+    "as": "sqlLitePlugin",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/sqlLite.plugin.ts",
     "__source": "dir"
   },
   {
     "name": "default",
     "as": "globalRoutes",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/router/global/global.routes.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/router/global/global.routes.ts",
     "__source": "dir"
   },
   {
     "name": "useAuthGuard",
     "as": "useAuthGuard",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/router/guards/useAuth.guard.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/router/guards/useAuth.guard.ts",
     "__source": "dir"
   },
   {
     "name": "usePermissionGuard",
     "as": "usePermissionGuard",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/router/guards/usePermission.guard.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/router/guards/usePermission.guard.ts",
     "__source": "dir"
   },
   {
     "name": "useRoleGuard",
     "as": "useRoleGuard",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/router/guards/useRole.guard.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/router/guards/useRole.guard.ts",
     "__source": "dir"
   },
   {
     "name": "default",
     "as": "router",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/router/index.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/router/index.ts",
     "__source": "dir"
   },
   {
     "name": "AppContextKey",
     "as": "AppContextKey",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/composables/theme/useAppTheme.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/composables/theme/useAppTheme.ts",
     "__source": "dir"
   },
   {
     "name": "useAppThemeProvider",
     "as": "useAppThemeProvider",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/composables/theme/useAppTheme.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/composables/theme/useAppTheme.ts",
     "__source": "dir"
   },
   {
     "name": "useAppTheme",
     "as": "useAppTheme",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/composables/theme/useAppTheme.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/composables/theme/useAppTheme.ts",
     "__source": "dir"
   },
   {
     "name": "AppTheme",
     "as": "AppTheme",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/composables/theme/useAppTheme.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/composables/theme/useAppTheme.ts",
     "type": true,
     "__source": "dir"
   },
   {
     "name": "AppMode",
     "as": "AppMode",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/composables/theme/useAppTheme.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/composables/theme/useAppTheme.ts",
     "type": true,
     "__source": "dir"
   },
   {
     "name": "AppContext",
     "as": "AppContext",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/composables/theme/useAppTheme.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/composables/theme/useAppTheme.ts",
     "type": true,
     "__source": "dir"
   },
   {
     "name": "Auth",
     "as": "Auth",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/auth/auth.service.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/auth/auth.service.ts",
     "__source": "dir"
   },
   {
     "name": "Auth",
     "as": "Auth",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/services/auth/auth.service.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/auth/auth.service.ts",
     "type": true,
     "declarationType": "class",
     "__source": "dir"
@@ -1800,19 +1806,19 @@
   {
     "name": "useLanguageStore",
     "as": "useLanguageStore",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/stores/useLanguage.stores.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/stores/useLanguage.stores.ts",
     "__source": "dir"
   },
   {
     "name": "Framework7VueResolver",
     "as": "Framework7VueResolver",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/utils/resolvers/resolvers.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/utils/resolvers/resolvers.ts",
     "__source": "dir"
   },
   {
     "name": "getFramework7AutoImports",
     "as": "getFramework7AutoImports",
-    "from": "C:/Users/PC/code/ayb/presalio-2.0/src/shared/utils/resolvers/resolvers.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/utils/resolvers/resolvers.ts",
     "__source": "dir"
   }
 ]
