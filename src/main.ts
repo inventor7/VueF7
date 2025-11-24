@@ -9,10 +9,14 @@ import i18n from "./plugins/i18n.plugin";
 import "./assets/css/icons.css";
 import "./assets/css/app.css";
 
+import { setupPowerSync } from "./shared/database/connector.database";
+
 Framework7.use(Framework7Vue);
 
 const app = createApp(App);
 app.use(pinia);
 app.use(i18n);
+
+setupPowerSync();
 
 app.mount("#app");

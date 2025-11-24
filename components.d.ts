@@ -12,7 +12,10 @@ declare module 'vue' {
     F7App: typeof import('framework7-vue')['f7App']
     F7Badge: typeof import('framework7-vue')['f7Badge']
     F7Block: typeof import('framework7-vue')['f7Block']
+    F7BlockTitle: typeof import('framework7-vue')['f7BlockTitle']
+    F7Button: typeof import('framework7-vue')['f7Button']
     F7Icon: typeof import('framework7-vue')['f7Icon']
+    F7Input: typeof import('framework7-vue')['f7Input']
     F7Link: typeof import('framework7-vue')['f7Link']
     F7Navbar: typeof import('framework7-vue')['f7Navbar']
     F7NavRight: typeof import('framework7-vue')['f7NavRight']
@@ -22,5 +25,6 @@ declare module 'vue' {
     F7Views: typeof import('framework7-vue')['f7Views']
     Home: typeof import('./src/modules/home/views/Home.vue')['default']
     HomePanel: typeof import('./src/modules/home/views/Home/HomePanel.vue')['default']
+    PowerSyncDemo: typeof import('./src/modules/home/views/PowerSyncDemo.vue')['default']
   }
 }

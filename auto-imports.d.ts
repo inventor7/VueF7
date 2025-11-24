@@ -7,10 +7,13 @@
 export {}
 declare global {
   const AppContextKey: typeof import('./src/shared/composables/theme/useAppTheme')['AppContextKey']
+  const AppSchema: typeof import('./src/shared/database/schemas/AppSchema')['AppSchema']
   const Auth: typeof import('./src/shared/services/auth/auth.service')['Auth']
+  const Connector: typeof import('./src/shared/database/Connector')['Connector']
   const Dom7: typeof import('framework7/lite')['Dom7']
   const EffectScope: typeof import('vue')['EffectScope']
   const Framework7VueResolver: typeof import('./src/shared/utils/resolvers/resolvers')['Framework7VueResolver']
+  const SupabaseConnector: typeof import('./src/shared/database/connector.database')['SupabaseConnector']
   const aboutRoutes: typeof import('./src/modules/about/router/routes/about.routes')['default']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -21,6 +24,7 @@ declare global {
   const computedEager: typeof import('@vueuse/core')['computedEager']
   const computedInject: typeof import('@vueuse/core')['computedInject']
   const computedWithControl: typeof import('@vueuse/core')['computedWithControl']
+  const connector: typeof import('./src/shared/database/connector.database')['connector']
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']
   const controlledRef: typeof import('@vueuse/core')['controlledRef']
   const createApp: typeof import('vue')['createApp']
@@ -36,6 +40,7 @@ declare global {
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
   const customRef: typeof import('vue')['customRef']
+  const db: typeof import('./src/shared/database/powersync.database')['db']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
@@ -121,6 +126,7 @@ declare global {
   const router: typeof import('./src/router/index')['default']
   const setActivePinia: typeof import('pinia')['setActivePinia']
   const setMapStoreSuffix: typeof import('pinia')['setMapStoreSuffix']
+  const setupPowerSync: typeof import('./src/shared/database/init')['setupPowerSync']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
@@ -350,6 +356,12 @@ declare global {
   export type { AppTheme, AppMode, AppContext } from './src/shared/composables/theme/useAppTheme'
   import('./src/shared/composables/theme/useAppTheme')
   // @ts-ignore
+  export type { SupabaseConnector, SupabaseConfig, SupabaseConnectorListener } from './src/shared/database/connector.database'
+  import('./src/shared/database/connector.database')
+  // @ts-ignore
+  export type { Database, TodoRecord, ListRecord } from './src/shared/database/schemas/AppSchema'
+  import('./src/shared/database/schemas/AppSchema')
+  // @ts-ignore
   export type { Auth } from './src/shared/services/auth/auth.service'
   import('./src/shared/services/auth/auth.service')
 }
@@ -360,10 +372,12 @@ declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly AppContextKey: UnwrapRef<typeof import('./src/shared/composables/theme/useAppTheme')['AppContextKey']>
+    readonly AppSchema: UnwrapRef<typeof import('./src/shared/database/schemas/AppSchema')['AppSchema']>
     readonly Auth: UnwrapRef<typeof import('./src/shared/services/auth/auth.service')['Auth']>
     readonly Dom7: UnwrapRef<typeof import('framework7/lite')['Dom7']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly Framework7VueResolver: UnwrapRef<typeof import('./src/shared/utils/resolvers/resolvers')['Framework7VueResolver']>
+    readonly SupabaseConnector: UnwrapRef<typeof import('./src/shared/database/connector.database')['SupabaseConnector']>
     readonly aboutRoutes: UnwrapRef<typeof import('./src/modules/about/router/routes/about.routes')['default']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -374,6 +388,7 @@ declare module 'vue' {
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
     readonly computedInject: UnwrapRef<typeof import('@vueuse/core')['computedInject']>
     readonly computedWithControl: UnwrapRef<typeof import('@vueuse/core')['computedWithControl']>
+    readonly connector: UnwrapRef<typeof import('./src/shared/database/connector.database')['connector']>
     readonly controlledComputed: UnwrapRef<typeof import('@vueuse/core')['controlledComputed']>
     readonly controlledRef: UnwrapRef<typeof import('@vueuse/core')['controlledRef']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -389,6 +404,7 @@ declare module 'vue' {
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly db: UnwrapRef<typeof import('./src/shared/database/powersync.database')['db']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -474,6 +490,7 @@ declare module 'vue' {
     readonly router: UnwrapRef<typeof import('./src/router/index')['default']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
+    readonly setupPowerSync: UnwrapRef<typeof import('./src/shared/database/init')['setupPowerSync']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>

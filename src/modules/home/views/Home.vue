@@ -16,7 +16,12 @@
       </F7NavRight>
     </F7Navbar>
 
-    <F7Block>Home page</F7Block>
+    <F7Block>
+      <p>Home page</p>
+      <F7Button fill href="/powersync-demo" class="mt-4">
+        🚀 Open PowerSync Demo
+      </F7Button>
+    </F7Block>
     <HomePanel />
   </F7Page>
 </template>

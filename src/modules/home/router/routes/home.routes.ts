@@ -14,6 +14,15 @@ const homeRoutes: Router.RouteParameters[] = [
       });
     },
   },
+  {
+    name: "powersync-demo",
+    path: "/powersync-demo",
+    async({ resolve }) {
+      import("@/modules/home/views/PowerSyncDemo.vue").then((vc) => {
+        resolve({ component: vc.default });
+      });
+    },
+  },
 ];
 
 export default homeRoutes;

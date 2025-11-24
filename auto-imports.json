@@ -1790,6 +1790,79 @@
     "__source": "dir"
   },
   {
+    "name": "SupabaseConnector",
+    "as": "SupabaseConnector",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/connector.database.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "SupabaseConnector",
+    "as": "SupabaseConnector",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/connector.database.ts",
+    "type": true,
+    "declarationType": "class",
+    "__source": "dir"
+  },
+  {
+    "name": "connector",
+    "as": "connector",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/connector.database.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "SupabaseConfig",
+    "as": "SupabaseConfig",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/connector.database.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "SupabaseConnectorListener",
+    "as": "SupabaseConnectorListener",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/connector.database.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "setupPowerSync",
+    "as": "setupPowerSync",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/init.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "db",
+    "as": "db",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/powersync.database.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "AppSchema",
+    "as": "AppSchema",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "Database",
+    "as": "Database",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "TodoRecord",
+    "as": "TodoRecord",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "ListRecord",
+    "as": "ListRecord",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
     "name": "Auth",
     "as": "Auth",
     "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/auth/auth.service.ts",
