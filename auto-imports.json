@@ -1722,6 +1722,18 @@
   },
   {
     "name": "default",
+    "as": "powersyncPlugin",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/powersync.plugin.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "supabase",
+    "as": "supabase",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/supabase.plugin.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "default",
     "as": "globalRoutes",
     "from": "C:/Users/PC/code/ayb/VueF7/src/router/global/global.routes.ts",
     "__source": "dir"
@@ -1804,8 +1816,8 @@
     "__source": "dir"
   },
   {
-    "name": "connector",
-    "as": "connector",
+    "name": "databaseConnector",
+    "as": "databaseConnector",
     "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/connector.database.ts",
     "__source": "dir"
   },
@@ -1824,15 +1836,21 @@
     "__source": "dir"
   },
   {
-    "name": "setupPowerSync",
-    "as": "setupPowerSync",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/init.ts",
+    "name": "default",
+    "as": "database",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/index.ts",
     "__source": "dir"
   },
   {
-    "name": "db",
-    "as": "db",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/powersync.database.ts",
+    "name": "default",
+    "as": "inittalizerDatabase",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/inittalizer.database.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "default",
+    "as": "loggerDatabase",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/logger.database.ts",
     "__source": "dir"
   },
   {

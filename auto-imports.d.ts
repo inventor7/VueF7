@@ -9,7 +9,6 @@ declare global {
   const AppContextKey: typeof import('./src/shared/composables/theme/useAppTheme')['AppContextKey']
   const AppSchema: typeof import('./src/shared/database/schemas/AppSchema')['AppSchema']
   const Auth: typeof import('./src/shared/services/auth/auth.service')['Auth']
-  const Connector: typeof import('./src/shared/database/Connector')['Connector']
   const Dom7: typeof import('framework7/lite')['Dom7']
   const EffectScope: typeof import('vue')['EffectScope']
   const Framework7VueResolver: typeof import('./src/shared/utils/resolvers/resolvers')['Framework7VueResolver']
@@ -24,7 +23,6 @@ declare global {
   const computedEager: typeof import('@vueuse/core')['computedEager']
   const computedInject: typeof import('@vueuse/core')['computedInject']
   const computedWithControl: typeof import('@vueuse/core')['computedWithControl']
-  const connector: typeof import('./src/shared/database/connector.database')['connector']
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']
   const controlledRef: typeof import('@vueuse/core')['controlledRef']
   const createApp: typeof import('vue')['createApp']
@@ -40,7 +38,10 @@ declare global {
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
   const customRef: typeof import('vue')['customRef']
-  const db: typeof import('./src/shared/database/powersync.database')['db']
+  const database: typeof import('./src/shared/database/index')['default']
+  const databaseConnector: typeof import('./src/shared/database/connector.database')['databaseConnector']
+  const databaseInittalizer: typeof import('./src/shared/database/database.inittalizer')['default']
+  const databaseLogger: typeof import('./src/shared/database/database.logger')['default']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
@@ -65,6 +66,7 @@ declare global {
   const homeRoutes: typeof import('./src/modules/home/router/routes/home.routes')['default']
   const i18nPlugin: typeof import('./src/plugins/i18n.plugin')['default']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
+  const inittalizerDatabase: typeof import('./src/shared/database/inittalizer.database')['default']
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
   const isDefined: typeof import('@vueuse/core')['isDefined']
@@ -73,6 +75,7 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const isShallow: typeof import('vue')['isShallow']
+  const loggerDatabase: typeof import('./src/shared/database/logger.database')['default']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapActions: typeof import('pinia')['mapActions']
   const mapGetters: typeof import('pinia')['mapGetters']
@@ -104,6 +107,7 @@ declare global {
   const onWatcherCleanup: typeof import('vue')['onWatcherCleanup']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const piniaPlugin: typeof import('./src/plugins/pinia.plugin')['default']
+  const powersyncPlugin: typeof import('./src/plugins/powersync.plugin')['default']
   const provide: typeof import('vue')['provide']
   const provideLocal: typeof import('@vueuse/core')['provideLocal']
   const reactify: typeof import('@vueuse/core')['reactify']
@@ -126,11 +130,11 @@ declare global {
   const router: typeof import('./src/router/index')['default']
   const setActivePinia: typeof import('pinia')['setActivePinia']
   const setMapStoreSuffix: typeof import('pinia')['setMapStoreSuffix']
-  const setupPowerSync: typeof import('./src/shared/database/init')['setupPowerSync']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const storeToRefs: typeof import('pinia')['storeToRefs']
+  const supabase: typeof import('./src/plugins/supabase.plugin')['supabase']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
   const templateRef: typeof import('@vueuse/core')['templateRef']
@@ -388,7 +392,6 @@ declare module 'vue' {
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
     readonly computedInject: UnwrapRef<typeof import('@vueuse/core')['computedInject']>
     readonly computedWithControl: UnwrapRef<typeof import('@vueuse/core')['computedWithControl']>
-    readonly connector: UnwrapRef<typeof import('./src/shared/database/connector.database')['connector']>
     readonly controlledComputed: UnwrapRef<typeof import('@vueuse/core')['controlledComputed']>
     readonly controlledRef: UnwrapRef<typeof import('@vueuse/core')['controlledRef']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -404,7 +407,8 @@ declare module 'vue' {
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
-    readonly db: UnwrapRef<typeof import('./src/shared/database/powersync.database')['db']>
+    readonly database: UnwrapRef<typeof import('./src/shared/database/index')['default']>
+    readonly databaseConnector: UnwrapRef<typeof import('./src/shared/database/connector.database')['databaseConnector']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -429,6 +433,7 @@ declare module 'vue' {
     readonly homeRoutes: UnwrapRef<typeof import('./src/modules/home/router/routes/home.routes')['default']>
     readonly i18nPlugin: UnwrapRef<typeof import('./src/plugins/i18n.plugin')['default']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
+    readonly inittalizerDatabase: UnwrapRef<typeof import('./src/shared/database/inittalizer.database')['default']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
@@ -437,6 +442,7 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
+    readonly loggerDatabase: UnwrapRef<typeof import('./src/shared/database/logger.database')['default']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
@@ -468,6 +474,7 @@ declare module 'vue' {
     readonly onWatcherCleanup: UnwrapRef<typeof import('vue')['onWatcherCleanup']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly piniaPlugin: UnwrapRef<typeof import('./src/plugins/pinia.plugin')['default']>
+    readonly powersyncPlugin: UnwrapRef<typeof import('./src/plugins/powersync.plugin')['default']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
@@ -490,11 +497,11 @@ declare module 'vue' {
     readonly router: UnwrapRef<typeof import('./src/router/index')['default']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
-    readonly setupPowerSync: UnwrapRef<typeof import('./src/shared/database/init')['setupPowerSync']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
+    readonly supabase: UnwrapRef<typeof import('./src/plugins/supabase.plugin')['supabase']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>

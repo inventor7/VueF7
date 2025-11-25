@@ -184,24 +184,4 @@ export class SupabaseConnector
   }
 }
 
-import { PowerSyncDatabase } from "@powersync/capacitor";
-import { AppSchema } from "./schemas/AppSchema";
-
-/**
- * The Capacitor PowerSyncDatabase will automatically detect the platform
- * and use the appropriate database drivers.
- */
-export const db = new PowerSyncDatabase({
-  schema: AppSchema,
-  database: {
-    dbFilename: "powersync.db",
-    debugMode: true,
-  },
-});
-
-export const connector = new SupabaseConnector();
-
-export const setupPowerSync = async () => {
-  await connector.init();
-  await db.connect(connector);
-};
+export const databaseConnector = new SupabaseConnector();

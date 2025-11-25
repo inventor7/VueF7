@@ -49,6 +49,7 @@
 <script setup lang="ts">
 import capacitorApp from "./plugins/capacitor.plugin";
 import { framework7 } from "./plugins/framework7.plugin";
+import databaseInitializer from "./shared/database/inittalizer.database";
 
 const device = getDevice();
 const f7Params = framework7();
@@ -65,6 +66,7 @@ onMounted(() => {
   f7ready(() => {
     if (device.capacitor) {
       capacitorApp.init(f7);
+      databaseInitializer();
     }
 
     const router = f7.views.main?.router;
@@ -74,14 +76,6 @@ onMounted(() => {
       });
     }
   });
-});
-
-onBeforeUnmount(() => {
-  f7.off("routeChange");
-  const router = f7.views.main?.router;
-  if (router) {
-    router.off("routeChanged");
-  }
 });
 
 const views = [
@@ -106,6 +100,14 @@ const views = [
     },
   },
 ];
+
+onBeforeUnmount(() => {
+  f7.off("routeChange");
+  const router = f7.views.main?.router;
+  if (router) {
+    router.off("routeChanged");
+  }
+});
 </script>
 
 <style scoped>

@@ -175,12 +175,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from "vue";
-import { db, connector } from "@/shared/database/connector.database";
 import type {
   ListRecord,
   TodoRecord,
 } from "@/shared/database/schemas/AppSchema";
+import { usePowerSync } from "@powersync/vue";
 
 const lists = ref<ListRecord[]>([]);
 const todos = ref<TodoRecord[]>([]);
@@ -198,10 +197,10 @@ const isLoggingIn = ref(false);
 let listsWatchAbort: AbortController | null = null;
 let todosWatchAbort: AbortController | null = null;
 
+const powerSync = usePowerSync();
+
 // Computed
-const completedTodos = computed(
-  () => todos.value.length
-);
+const completedTodos = computed(() => todos.value.length);
 
 const getTodoCount = (listId: string) => {
   return todos.value.length;
@@ -223,12 +222,12 @@ const handleLogin = async () => {
   isLoggingIn.value = true;
 
   try {
-    await connector.login(loginEmail.value, loginPassword.value);
+    await databaseConnector.login(loginEmail.value, loginPassword.value);
 
     // Get the session to extract user email
     const {
       data: { session },
-    } = await connector.client.auth.getSession();
+    } = await databaseConnector.client.auth.getSession();
     if (session?.user?.email) {
       userEmail.value = session.user.email;
       userId.value = session.user.id;
@@ -264,7 +263,7 @@ const handleLogout = async () => {
   todosWatchAbort?.abort();
 
   // Sign out from Supabase
-  await connector.client.auth.signOut();
+  await databaseConnector.client.auth.signOut();
 
   isLoggedIn.value = false;
   userEmail.value = "";
@@ -280,7 +279,7 @@ const watchLists = async () => {
   listsWatchAbort = new AbortController();
 
   try {
-    for await (const result of db.watch(
+    for await (const result of database.watch(
       "SELECT * FROM lists ORDER BY created_at DESC",
       [],
       { signal: listsWatchAbort.signal }
@@ -297,7 +296,7 @@ const watchTodos = async () => {
   todosWatchAbort = new AbortController();
 
   try {
-    for await (const result of db.watch(
+    for await (const result of database.watch(
       "SELECT * FROM todos ORDER BY created_at DESC",
       [],
       { signal: todosWatchAbort.signal }
@@ -312,7 +311,6 @@ const watchTodos = async () => {
 // CRUD Operations
 const userId = ref("");
 
-
 const createList = async () => {
   if (!newListName.value.trim()) return;
 
@@ -321,7 +319,7 @@ const createList = async () => {
     const now = new Date().toISOString();
     const owner = userId.value || "demo-user";
 
-    await db.execute(
+    await database.execute(
       "INSERT INTO lists (id, name, created_at, owner_id) VALUES (?, ?, ?, ?)",
       [id, newListName.value, now, owner]
     );
@@ -335,9 +333,9 @@ const createList = async () => {
 
 const deleteList = async (id: string) => {
   // Delete associated todos first
-  await db.execute("DELETE FROM todos WHERE list_id = ?", [id]);
+  await database.execute("DELETE FROM todos WHERE list_id = ?", [id]);
   // Delete list
-  await db.execute("DELETE FROM lists WHERE id = ?", [id]);
+  await database.execute("DELETE FROM lists WHERE id = ?", [id]);
 };
 
 const addTodoToList = async (listId: string) => {
@@ -345,7 +343,7 @@ const addTodoToList = async (listId: string) => {
   const now = new Date().toISOString();
   const description = `Todo ${Math.floor(Math.random() * 1000)}`;
 
-  await db.execute(
+  await database.execute(
     "INSERT INTO todos (id, list_id, description, created_at, completed, created_by) VALUES (?, ?, ?, ?, ?, ?)",
     [id, listId, description, now, 0, userId.value || "demo-user"]
   );
@@ -354,26 +352,26 @@ const addTodoToList = async (listId: string) => {
 const toggleTodo = async (id: string, currentCompleted: number | null) => {
   const completed = currentCompleted ? 0 : 1;
   const completedAt = completed ? new Date().toISOString() : null;
-  const completedBy = completed ? "demo-user" : null;
+  const completedatabasey = completed ? "demo-user" : null;
 
-  await db.execute(
+  await database.execute(
     "UPDATE todos SET completed = ?, completed_at = ?, completed_by = ? WHERE id = ?",
-    [completed, completedAt, completedBy, id]
+    [completed, completedAt, completedatabasey, id]
   );
 };
 
 const deleteTodo = async (id: string) => {
-  await db.execute("DELETE FROM todos WHERE id = ?", [id]);
+  await database.execute("DELETE FROM todos WHERE id = ?", [id]);
 };
 
 const refreshData = async () => {
   // Force a refresh by re-querying
-  const listsResult = await db.getAll(
+  const listsResult = await database.getAll(
     "SELECT * FROM lists ORDER BY created_at DESC"
   );
   lists.value = listsResult as any as ListRecord[];
 
-  const todosResult = await db.getAll(
+  const todosResult = await database.getAll(
     "SELECT * FROM todos ORDER BY created_at DESC"
   );
   todos.value = todosResult as any as TodoRecord[];
@@ -381,15 +379,16 @@ const refreshData = async () => {
 
 // Check connection status
 const checkConnection = () => {
-  connected.value = db.connected;
+  connected.value = database.connected;
 };
 
 onMounted(async () => {
   // Check for existing session
+  await listVfsEntries();
   try {
     const {
       data: { session },
-    } = await connector.client.auth.getSession();
+    } = await databaseConnector.client.auth.getSession();
     if (session?.user?.email) {
       userEmail.value = session.user.email;
       userId.value = session.user.id;
@@ -411,9 +410,38 @@ onMounted(async () => {
   }
 });
 
-onUnmounted(() => {
+onUnmounted(async () => {
   // Stop watching
   listsWatchAbort?.abort();
   todosWatchAbort?.abort();
 });
+
+// Clear all OPFS storage
+async function purgeVFS() {
+  await powerSync.value.disconnect();
+  await powerSync.value.close();
+
+  const root = await navigator.storage.getDirectory();
+  await new Promise((resolve) => setTimeout(resolve, 1)); // Allow .db-wal to become deletable
+
+  for await (const [name, entry] of root.entries!()) {
+    try {
+      if (entry.kind === "file") {
+        await root.removeEntry(name);
+      } else if (entry.kind === "directory") {
+        await root.removeEntry(name, { recursive: true });
+      }
+    } catch (err) {
+      console.error(`Failed to delete ${entry.kind}: ${name}`, err);
+    }
+  }
+}
+
+// List OPFS entries
+async function listVfsEntries() {
+  const root = await navigator.storage.getDirectory();
+  for await (const [name, entry] of root.entries()) {
+    console.log(`${entry.kind}: ${name}`);
+  }
+}
 </script>
