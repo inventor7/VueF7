@@ -84,6 +84,12 @@ export function Framework7VueResolver(): ComponentResolver {
     "f7-swiper",
     "f7-swiper-slide",
 
+    //swipe
+    "f7-swipeout",
+    "f7-swipeout-actions",
+    "f7-swipeout-button",
+    "f7-swipeout-content",
+
     // Data
     "f7-accordion",
     "f7-accordion-item",

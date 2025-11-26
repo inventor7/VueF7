@@ -1867,15 +1867,36 @@
     "__source": "dir"
   },
   {
-    "name": "TodoRecord",
-    "as": "TodoRecord",
+    "name": "GroupRecord",
+    "as": "GroupRecord",
     "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
     "type": true,
     "__source": "dir"
   },
   {
-    "name": "ListRecord",
-    "as": "ListRecord",
+    "name": "MemberRecord",
+    "as": "MemberRecord",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "ExpenseRecord",
+    "as": "ExpenseRecord",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "SplitRecord",
+    "as": "SplitRecord",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "SettlementRecord",
+    "as": "SettlementRecord",
     "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
     "type": true,
     "__source": "dir"
@@ -1910,6 +1931,24 @@
     "name": "getFramework7AutoImports",
     "as": "getFramework7AutoImports",
     "from": "C:/Users/PC/code/ayb/VueF7/src/shared/utils/resolvers/resolvers.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "useAuthStore",
+    "as": "useAuthStore",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/stores/auth.store.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "useExpensesStore",
+    "as": "useExpensesStore",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/stores/expenses.store.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "useGroupsStore",
+    "as": "useGroupsStore",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/stores/groups.store.ts",
     "__source": "dir"
   }
 ]

@@ -95,6 +95,46 @@ export class SupabaseConnector
 
     this.updateSession(session);
   }
+  async signup(username: string, password: string, name: string) {
+    const {
+      data: { session, user },
+      error,
+    } = await this.client.auth.signUp({
+      email: username,
+      password: password,
+      options: {
+        data: {
+          full_name: name,
+        },
+      },
+    });
+
+    if (error) {
+      throw error;
+    }
+
+    // Manually create user profile if needed (bypassing trigger)
+    if (user) {
+      try {
+        const { error: profileError } = await this.client.from("users").insert({
+          id: user.id,
+          email: user.email,
+          full_name: name,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        });
+
+        // Ignore if profile already exists (trigger might have created it)
+        if (profileError && !profileError.message.includes("duplicate")) {
+          console.warn("Failed to create user profile:", profileError);
+        }
+      } catch (profileErr) {
+        console.warn("Profile creation error:", profileErr);
+      }
+    }
+
+    this.updateSession(session);
+  }
 
   async fetchCredentials(): Promise<PowerSyncCredentials | null> {
     const {
