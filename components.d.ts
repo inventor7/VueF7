@@ -46,8 +46,8 @@ declare module 'vue' {
     F7Views: typeof import('framework7-vue')['f7Views']
     GroupDetail: typeof import('./src/modules/groups/views/GroupDetail.vue')['default']
     GroupsList: typeof import('./src/modules/groups/views/GroupsList.vue')['default']
-    Home: typeof import('./src/modules/home/views/Home.vue')['default']
     HomePanel: typeof import('./src/modules/home/views/Home/HomePanel.vue')['default']
+    HomeView: typeof import('./src/modules/home/views/HomeView.vue')['default']
     LoginView: typeof import('./src/modules/auth/views/LoginView.vue')['default']
     ProfileView: typeof import('./src/modules/home/views/ProfileView.vue')['default']
   }

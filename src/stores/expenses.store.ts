@@ -1,43 +1,38 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import database from "@/shared/database/index";
-import type { ExpenseRecord } from "@/shared/database/schemas/AppSchema";
+import { db } from "@/shared/database/index";
+import type { ExpenseRecord } from "@/shared/database/types";
 import { useAuthStore } from "./auth.store";
-import type { Transaction } from "@powersync/web";
 
 export const useExpensesStore = defineStore("expenses", () => {
   const expenses = ref<ExpenseRecord[]>([]);
   const loading = ref(false);
   const authStore = useAuthStore();
 
-  let watchAbort: AbortController | null = null;
+  let watchSubscription: { dispose: () => void } | null = null;
 
   async function watchGroupExpenses(groupId: string) {
-    if (watchAbort) watchAbort.abort();
-    watchAbort = new AbortController();
+    if (watchSubscription) {
+      watchSubscription.dispose();
+      watchSubscription = null;
+    }
 
     try {
-      const query = `
-        SELECT * FROM expenses 
-        WHERE group_id = ? 
-        ORDER BY date DESC, created_at DESC
-      `;
+      const query = db
+        .selectFrom("expenses")
+        .selectAll()
+        .where("group_id", "=", groupId)
+        .orderBy("date", "desc")
+        .orderBy("created_at", "desc");
 
-      for await (const result of database.watch(query, [groupId], {
-        signal: watchAbort.signal,
-      })) {
-        expenses.value = Array.from(
-          result.rows?._array || result.rows || []
-        ) as ExpenseRecord[];
-        console.log(
-          `💵 Loaded ${expenses.value.length} expenses for group ${groupId}:`,
-          expenses.value
-        );
-      }
+      // @ts-ignore - db.watch is added by wrapPowerSyncWithKysely
+      watchSubscription = db.watch(query, {
+        onResult: (result) => {
+          expenses.value = result as ExpenseRecord[];
+        },
+      });
     } catch (error: any) {
-      if (error.name !== "AbortError") {
-        console.error("Error watching expenses:", error);
-      }
+      console.error("Error watching expenses:", error);
     }
   }
 
@@ -56,30 +51,36 @@ export const useExpensesStore = defineStore("expenses", () => {
     const userId = paidBy || authStore.user.id;
     const expenseDate = date || now;
 
-    await database.writeTransaction(async (tx: Transaction) => {
+    await db.transaction().execute(async (tx) => {
       // 1. Create Expense
-      await tx.execute(
-        `INSERT INTO expenses (id, group_id, paid_by, amount, description, category, date, created_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-        [
-          expenseId,
-          groupId,
-          userId,
+      await tx
+        .insertInto("expenses")
+        .values({
+          id: expenseId,
+          group_id: groupId,
+          paid_by: userId,
           amount,
           description,
-          "general",
-          expenseDate,
-          now,
-        ]
-      );
+          category: "general",
+          date: expenseDate,
+          created_at: now,
+        })
+        .execute();
 
       // 2. Create Splits
-      for (const split of splitsData) {
-        await tx.execute(
-          `INSERT INTO splits (id, expense_id, user_id, amount_owed, group_id)
-           VALUES (?, ?, ?, ?, ?)`,
-          [crypto.randomUUID(), expenseId, split.userId, split.amount, groupId]
-        );
+      if (splitsData.length > 0) {
+        await tx
+          .insertInto("splits")
+          .values(
+            splitsData.map((split) => ({
+              id: crypto.randomUUID(),
+              expense_id: expenseId,
+              user_id: split.userId,
+              amount_owed: split.amount,
+              group_id: groupId,
+            }))
+          )
+          .execute();
       }
     });
   }
@@ -91,19 +92,23 @@ export const useExpensesStore = defineStore("expenses", () => {
     const now = new Date().toISOString();
     const payerId = authStore.user.id;
 
-    await database.writeTransaction(async (tx: Transaction) => {
-      await tx.execute(
-        `INSERT INTO settlements (id, group_id, payer_id, receiver_id, amount, date)
-         VALUES (?, ?, ?, ?, ?, ?)`,
-        [settlementId, groupId, payerId, receiverId, amount, now]
-      );
-    });
+    await db
+      .insertInto("settlements")
+      .values({
+        id: settlementId,
+        group_id: groupId,
+        payer_id: payerId,
+        receiver_id: receiverId,
+        amount,
+        date: now,
+      })
+      .execute();
   }
 
   function stopWatching() {
-    if (watchAbort) {
-      watchAbort.abort();
-      watchAbort = null;
+    if (watchSubscription) {
+      watchSubscription.dispose();
+      watchSubscription = null;
     }
   }
 

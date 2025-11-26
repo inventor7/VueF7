@@ -35,7 +35,11 @@ export default defineConfig({
     tailwindcss(),
 
     vueDevTools({}),
-    TurboConsole(),
+    TurboConsole({
+      launchEditor: {
+        specifiedEditor: "antigravity",
+      },
+    }),
     VueI18nPlugin({
       include: SRC_LOCALES,
     }),

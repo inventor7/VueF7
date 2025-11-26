@@ -42,6 +42,7 @@ declare global {
   const databaseConnector: typeof import('./src/shared/database/connector.database')['databaseConnector']
   const databaseInittalizer: typeof import('./src/shared/database/database.inittalizer')['default']
   const databaseLogger: typeof import('./src/shared/database/database.logger')['default']
+  const db: typeof import('./src/shared/database/index')['db']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
@@ -107,6 +108,7 @@ declare global {
   const onWatcherCleanup: typeof import('vue')['onWatcherCleanup']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const piniaPlugin: typeof import('./src/plugins/pinia.plugin')['default']
+  const powerSync: typeof import('./src/shared/database/index')['powerSync']
   const powersyncPlugin: typeof import('./src/plugins/powersync.plugin')['default']
   const provide: typeof import('vue')['provide']
   const provideLocal: typeof import('@vueuse/core')['provideLocal']
@@ -366,8 +368,8 @@ declare global {
   export type { SupabaseConnector, SupabaseConfig, SupabaseConnectorListener } from './src/shared/database/connector.database'
   import('./src/shared/database/connector.database')
   // @ts-ignore
-  export type { Database, GroupRecord, MemberRecord, ExpenseRecord, SplitRecord, SettlementRecord } from './src/shared/database/schemas/AppSchema'
-  import('./src/shared/database/schemas/AppSchema')
+  export type { Database, KyselyDatabase, GroupRecord, MemberRecord, ExpenseRecord, SplitRecord, SettlementRecord } from './src/shared/database/types'
+  import('./src/shared/database/types')
   // @ts-ignore
   export type { Auth } from './src/shared/services/auth/auth.service'
   import('./src/shared/services/auth/auth.service')
@@ -412,6 +414,7 @@ declare module 'vue' {
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly database: UnwrapRef<typeof import('./src/shared/database/index')['default']>
     readonly databaseConnector: UnwrapRef<typeof import('./src/shared/database/connector.database')['databaseConnector']>
+    readonly db: UnwrapRef<typeof import('./src/shared/database/index')['db']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -477,6 +480,7 @@ declare module 'vue' {
     readonly onWatcherCleanup: UnwrapRef<typeof import('vue')['onWatcherCleanup']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly piniaPlugin: UnwrapRef<typeof import('./src/plugins/pinia.plugin')['default']>
+    readonly powerSync: UnwrapRef<typeof import('./src/shared/database/index')['powerSync']>
     readonly powersyncPlugin: UnwrapRef<typeof import('./src/plugins/powersync.plugin')['default']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>

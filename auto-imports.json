@@ -1842,6 +1842,18 @@
     "__source": "dir"
   },
   {
+    "name": "powerSync",
+    "as": "powerSync",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/index.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "db",
+    "as": "db",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/index.ts",
+    "__source": "dir"
+  },
+  {
     "name": "default",
     "as": "inittalizerDatabase",
     "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/inittalizer.database.ts",
@@ -1862,42 +1874,49 @@
   {
     "name": "Database",
     "as": "Database",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/types.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "KyselyDatabase",
+    "as": "KyselyDatabase",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/types.ts",
     "type": true,
     "__source": "dir"
   },
   {
     "name": "GroupRecord",
     "as": "GroupRecord",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/types.ts",
     "type": true,
     "__source": "dir"
   },
   {
     "name": "MemberRecord",
     "as": "MemberRecord",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/types.ts",
     "type": true,
     "__source": "dir"
   },
   {
     "name": "ExpenseRecord",
     "as": "ExpenseRecord",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/types.ts",
     "type": true,
     "__source": "dir"
   },
   {
     "name": "SplitRecord",
     "as": "SplitRecord",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/types.ts",
     "type": true,
     "__source": "dir"
   },
   {
     "name": "SettlementRecord",
     "as": "SettlementRecord",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/schemas/AppSchema.ts",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/database/types.ts",
     "type": true,
     "__source": "dir"
   },

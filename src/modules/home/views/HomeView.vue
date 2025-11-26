@@ -1,6 +1,13 @@
 <template>
-  <F7Page ptr @ptr:refresh="handleRefresh">
-    <F7Navbar large transparent title="FairShare" :sliding="false">
+  <F7Page ptr @ptr:refresh="handleRefresh" class="pb-16">
+    <F7Navbar
+      @navbar:collapse="isNavbarCollapsed = true"
+      @navbar:expand="isNavbarCollapsed = false"
+      large
+      transparent
+      title="FairShare"
+      :sliding="false"
+    >
       <F7NavRight>
         <F7Link
           icon-ios="f7:plus_circle_fill"
@@ -12,7 +19,10 @@
         />
       </F7NavRight>
 
-      <F7Subnavbar bg-color="transparent" :inner="false">
+      <F7Subnavbar
+        :bg-color="!isNavbarCollapsed ? 'transparent' : ''"
+        :inner="false"
+      >
         <F7Searchbar
           class="search-groups"
           :custom-search="true"
@@ -34,8 +44,9 @@
 const groupsStore = useGroupsStore();
 const showCreateGroup = ref(false);
 const groupsList = ref<any>(null);
+const isNavbarCollapsed = ref(false);
 
-function handleSearch(searchbar: any, query: string) {
+function handleSearch(searchbar: Element, query: string) {
   if (groupsList.value) {
     groupsList.value.searchQuery = query;
   }
@@ -49,10 +60,8 @@ function clearSearch() {
 
 async function handleRefresh(done: any) {
   await groupsStore.refreshGroups();
-  setTimeout(() => {
-    console.log("Refreshed", done);
-    done();
-  }, 1000);
+
+  done();
 }
 
 onMounted(() => {
