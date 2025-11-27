@@ -1,28 +1,46 @@
-import capacitorApp from "../capacitor.plugin";
+import { Keyboard, KeyboardResize } from "@capacitor/keyboard";
+import { Capacitor } from "@capacitor/core";
+import type Framework7 from "framework7";
 
 /*
   This method does the following:
     - provides cross-platform view "shrinking" on keyboard open/close
     - hides keyboard accessory bar for all inputs except where it required
   */
-export const useKeyboard = () => {
-  var f7: any = capacitorApp.f7;
-  let window: any = {};
+export const useKeyboard = (f7: Framework7) => {
+  if (!Capacitor.isNativePlatform()) {
+    return;
+  }
 
-  if (!window.Capacitor || !window.Capacitor.Plugins.Keyboard) return;
-  var $ = f7.$;
-  var Keyboard = window.Capacitor.Plugins.Keyboard;
-  if (!Keyboard) return;
-  Keyboard.setResizeMode({ mode: "native" });
+  const $ = f7.$;
+
+  Keyboard.setResizeMode({ mode: KeyboardResize.Native });
   Keyboard.setScroll({ isDisabled: true });
   Keyboard.setAccessoryBarVisible({ isVisible: false });
-  window.addEventListener("keyboardWillShow", () => {
-    f7.input.scrollIntoView(document.activeElement, 0, true, true);
+
+  Keyboard.addListener("keyboardWillShow", () => {
+    if (document.activeElement) {
+      f7.input.scrollIntoView(
+        document.activeElement as HTMLElement,
+        0,
+        true,
+        true
+      );
+    }
   });
-  window.addEventListener("keyboardDidShow", () => {
-    f7.input.scrollIntoView(document.activeElement, 0, true, true);
+
+  Keyboard.addListener("keyboardDidShow", () => {
+    if (document.activeElement) {
+      f7.input.scrollIntoView(
+        document.activeElement as HTMLElement,
+        0,
+        true,
+        true
+      );
+    }
   });
-  window.addEventListener("keyboardDidHide", () => {
+
+  Keyboard.addListener("keyboardDidHide", () => {
     if (
       document.activeElement &&
       $(document.activeElement).parents(".messagebar").length

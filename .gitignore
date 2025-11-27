@@ -55,3 +55,4 @@ ios
 dist
 docs
 .idea
+resources/android/**/*

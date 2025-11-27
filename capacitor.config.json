@@ -1,8 +1,7 @@
 {
   "appId": "io.aybinv7.vue-f7",
   "appName": "VueF7",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
+  "npmClient": "pnpm",
   "webDir": "dist",
   "plugins": {
     "SplashScreen": {

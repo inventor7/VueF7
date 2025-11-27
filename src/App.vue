@@ -44,6 +44,7 @@
 </template>
 
 <script setup lang="ts">
+import type Framework7 from "framework7";
 import { onMounted } from "vue";
 import capacitorApp from "./plugins/capacitor.plugin";
 import { framework7 } from "./plugins/framework7.plugin";
@@ -58,7 +59,7 @@ const authStore = useAuthStore();
 onMounted(() => {
   authStore.init();
 
-  f7ready(() => {
+  f7ready((f7: Framework7) => {
     if (device.capacitor) {
       capacitorApp.init(f7);
       databaseInitializer();
