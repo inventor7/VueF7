@@ -1667,6 +1667,55 @@
     "as": "f7router"
   },
   {
+    "name": "RegionTable",
+    "as": "RegionTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "CountryTable",
+    "as": "CountryTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "CustomerTable",
+    "as": "CustomerTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "OrderTable",
+    "as": "OrderTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "ProductTable",
+    "as": "ProductTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "OrderDetailTable",
+    "as": "OrderDetailTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "HomeDatabaseSchema",
+    "as": "HomeDatabaseSchema",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
     "name": "default",
     "as": "routes",
     "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/router/routes/index.ts",
@@ -1801,6 +1850,31 @@
     "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/auth/auth.service.ts",
     "type": true,
     "declarationType": "class",
+    "__source": "dir"
+  },
+  {
+    "name": "Database",
+    "as": "Database",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/database.schema.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "sqlite",
+    "as": "sqlite",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/index.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "db",
+    "as": "db",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/index.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "getRawConnection",
+    "as": "getRawConnection",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/index.ts",
     "__source": "dir"
   },
   {

@@ -43,6 +43,7 @@ declare global {
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
   const customRef: typeof import('vue')['customRef']
+  const db: typeof import('./src/shared/services/database/index')['db']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
@@ -59,11 +60,14 @@ declare global {
   const fakeProducts: typeof import("./src/shared/stores/fake/products.fake")["fakeProducts"]
   const framework7: typeof import('./src/plugins/framework7.plugin')['framework7']
   const getActivePinia: typeof import('pinia')['getActivePinia']
+  const getConnection: typeof import('./src/shared/services/database/index')['getConnection']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getCurrentWatcher: typeof import('vue')['getCurrentWatcher']
   const getDevice: typeof import('framework7/lite')['getDevice']
   const getFramework7AutoImports: typeof import('./src/shared/utils/resolvers/resolvers')['getFramework7AutoImports']
+  const getKysely: typeof import('./src/shared/services/database/index')['getKysely']
+  const getRawConnection: typeof import('./src/shared/services/database/index')['getRawConnection']
   const globalRoutes: typeof import('./src/router/global/global.routes')['default']
   const h: typeof import('vue')['h']
   const i18nPlugin: typeof import('./src/plugins/i18n.plugin')['default']
@@ -136,6 +140,7 @@ declare global {
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const sqlLitePlugin: typeof import('./src/plugins/sqlLite.plugin')['default']
+  const sqlite: typeof import('./src/shared/services/database/index')['sqlite']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
@@ -362,11 +367,17 @@ declare global {
   export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
+  export type { RegionTable, CountryTable, CustomerTable, OrderTable, ProductTable, OrderDetailTable, HomeDatabaseSchema } from './src/modules/home/database/schema'
+  import('./src/modules/home/database/schema')
+  // @ts-ignore
   export type { AppTheme, AppMode, AppContext } from './src/shared/composables/theme/useAppTheme'
   import('./src/shared/composables/theme/useAppTheme')
   // @ts-ignore
   export type { Auth } from './src/shared/services/auth/auth.service'
   import('./src/shared/services/auth/auth.service')
+  // @ts-ignore
+  export type { Database } from './src/shared/services/database/database.schema'
+  import('./src/shared/services/database/database.schema')
 }
 
 // for vue template auto import
@@ -403,6 +414,7 @@ declare module 'vue' {
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly db: UnwrapRef<typeof import('./src/shared/services/database/index')['db']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -422,6 +434,7 @@ declare module 'vue' {
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
     readonly getDevice: UnwrapRef<typeof import('framework7/lite')['getDevice']>
     readonly getFramework7AutoImports: UnwrapRef<typeof import('./src/shared/utils/resolvers/resolvers')['getFramework7AutoImports']>
+    readonly getRawConnection: UnwrapRef<typeof import('./src/shared/services/database/index')['getRawConnection']>
     readonly globalRoutes: UnwrapRef<typeof import('./src/router/global/global.routes')['default']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly i18nPlugin: UnwrapRef<typeof import('./src/plugins/i18n.plugin')['default']>
@@ -492,6 +505,7 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly sqlLitePlugin: UnwrapRef<typeof import('./src/plugins/sqlLite.plugin')['default']>
+    readonly sqlite: UnwrapRef<typeof import('./src/shared/services/database/index')['sqlite']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>

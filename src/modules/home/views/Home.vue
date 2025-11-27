@@ -132,12 +132,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import {
-  CapacitorSQLite,
-  SQLiteConnection,
-  SQLiteDBConnection,
+  type SQLiteDBConnection,
   type capSQLiteSet,
 } from "@capacitor-community/sqlite";
 import { Capacitor } from "@capacitor/core";
+import { sql } from "kysely";
+import { db, getRawConnection } from "@/shared/services/database";
 
 type Benchmark = {
   sqlite: {
@@ -170,48 +170,7 @@ const benchmarkResults = ref<Benchmark>({
 });
 
 // --- Database Connections ---
-const sqlite = new SQLiteConnection(CapacitorSQLite);
-let db: SQLiteDBConnection;
 let indexedDB: IDBDatabase;
-
-// --- Schemas (Subset for Demonstration) ---
-const schemas = `
-  CREATE TABLE IF NOT EXISTS regions (
-      region_id INTEGER PRIMARY KEY,
-      region_name TEXT NOT NULL
-  );
-  CREATE TABLE IF NOT EXISTS countries (
-      country_id INTEGER PRIMARY KEY,
-      country_name TEXT NOT NULL,
-      region_id INTEGER,
-      FOREIGN KEY (region_id) REFERENCES regions(region_id)
-  );
-  CREATE TABLE IF NOT EXISTS customers (
-      customer_id INTEGER PRIMARY KEY,
-      customer_name TEXT NOT NULL,
-      country_id INTEGER,
-      FOREIGN KEY (country_id) REFERENCES countries(country_id)
-  );
-  CREATE TABLE IF NOT EXISTS orders (
-      order_id INTEGER PRIMARY KEY,
-      customer_id INTEGER,
-      order_date TEXT NOT NULL,
-      FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
-  );
-  CREATE TABLE IF NOT EXISTS products (
-      product_id INTEGER PRIMARY KEY,
-      product_name TEXT NOT NULL,
-      unit_price REAL
-  );
-  CREATE TABLE IF NOT EXISTS order_details (
-      order_detail_id INTEGER PRIMARY KEY AUTOINCREMENT,
-      order_id INTEGER,
-      product_id INTEGER,
-      quantity INTEGER,
-      FOREIGN KEY (order_id) REFERENCES orders(order_id),
-      FOREIGN KEY (product_id) REFERENCES products(product_id)
-  );
-`;
 
 const NUM_REGIONS = 5;
 const NUM_COUNTRIES_PER_REGION = 10;
@@ -220,22 +179,92 @@ const NUM_ORDERS_PER_CUSTOMER = 15;
 const NUM_PRODUCTS = 10000;
 const NUM_DETAILS_PER_ORDER = 3;
 
-// --- SQLite Implementation (Using the correct `executeSet` method) ---
+// --- SQLite Implementation (Using Kysely + executeSet) ---
 async function setupSQLite() {
   isSettingUpSQLite.value = true;
   setupMessage.value = "Setting up SQLite...";
   const startTime = performance.now();
   try {
     const platform = Capacitor.getPlatform();
-    db = await sqlite.createConnection(
-      "benchmarkDB",
-      true,
-      "no-encryption",
-      1,
-      false
-    );
-    await db.open();
-    await db.execute(schemas, false);
+
+    // Create tables using Kysely Schema Builder
+    setupMessage.value = "Creating database schema...";
+    await db.schema
+      .createTable("regions")
+      .ifNotExists()
+      .addColumn("region_id", "integer", (col) => col.primaryKey())
+      .addColumn("region_name", "text", (col) => col.notNull())
+      .execute();
+
+    await db.schema
+      .createTable("countries")
+      .ifNotExists()
+      .addColumn("country_id", "integer", (col) => col.primaryKey())
+      .addColumn("country_name", "text", (col) => col.notNull())
+      .addColumn("region_id", "integer")
+      .addForeignKeyConstraint(
+        "fk_countries_regions",
+        ["region_id"],
+        "regions",
+        ["region_id"]
+      )
+      .execute();
+
+    await db.schema
+      .createTable("customers")
+      .ifNotExists()
+      .addColumn("customer_id", "integer", (col) => col.primaryKey())
+      .addColumn("customer_name", "text", (col) => col.notNull())
+      .addColumn("country_id", "integer")
+      .addForeignKeyConstraint(
+        "fk_customers_countries",
+        ["country_id"],
+        "countries",
+        ["country_id"]
+      )
+      .execute();
+
+    await db.schema
+      .createTable("orders")
+      .ifNotExists()
+      .addColumn("order_id", "integer", (col) => col.primaryKey())
+      .addColumn("customer_id", "integer")
+      .addColumn("order_date", "text", (col) => col.notNull())
+      .addForeignKeyConstraint(
+        "fk_orders_customers",
+        ["customer_id"],
+        "customers",
+        ["customer_id"]
+      )
+      .execute();
+
+    await db.schema
+      .createTable("products")
+      .ifNotExists()
+      .addColumn("product_id", "integer", (col) => col.primaryKey())
+      .addColumn("product_name", "text", (col) => col.notNull())
+      .addColumn("unit_price", "real")
+      .execute();
+
+    await db.schema
+      .createTable("order_details")
+      .ifNotExists()
+      .addColumn("order_detail_id", "integer", (col) =>
+        col.primaryKey().autoIncrement()
+      )
+      .addColumn("order_id", "integer")
+      .addColumn("product_id", "integer")
+      .addColumn("quantity", "integer")
+      .addForeignKeyConstraint("fk_details_orders", ["order_id"], "orders", [
+        "order_id",
+      ])
+      .addForeignKeyConstraint(
+        "fk_details_products",
+        ["product_id"],
+        "products",
+        ["product_id"]
+      )
+      .execute();
 
     setupMessage.value = "Generating SQLite data...";
 
@@ -308,23 +337,25 @@ async function setupSQLite() {
     });
 
     setupMessage.value = "Executing main data set...";
-    await db.executeSet(sets); // Use executeSet for all main data
+    const conn = await getRawConnection();
+    await conn.executeSet(sets); // Use executeSet for all main data
 
     setupMessage.value = "Querying orders to create details...";
-    const ordersResult = await db.query("SELECT order_id FROM orders");
-    const orderIds = ordersResult.values?.map((v) => v.order_id) ?? [];
+    // Use Kysely for this query
+    const orderIds = await db.selectFrom("orders").select("order_id").execute();
+
     const detailValues: any[][] = [];
-    for (const id of orderIds) {
+    for (const order of orderIds) {
       for (let i = 0; i < NUM_DETAILS_PER_ORDER; i++) {
         const randomProductId = Math.floor(Math.random() * NUM_PRODUCTS) + 1;
         const randomQuantity = Math.floor(Math.random() * 10) + 1;
-        detailValues.push([id, randomProductId, randomQuantity]);
+        detailValues.push([order.order_id, randomProductId, randomQuantity]);
       }
     }
 
     setupMessage.value = "Executing final data set for order details...";
     if (detailValues.length > 0) {
-      await db.executeSet([
+      await conn.executeSet([
         {
           statement:
             "INSERT INTO order_details (order_id, product_id, quantity) VALUES (?, ?, ?);",
@@ -335,7 +366,7 @@ async function setupSQLite() {
     // --- REFACTOR END ---
 
     if (platform === "web") {
-      await sqlite.saveToStore("benchmarkDB");
+      // Connection is managed by capacitor-sqlite-kysely, no need to save
     }
     setupMessage.value = "SQLite setup complete!";
     const endTime = performance.now();
@@ -351,28 +382,32 @@ async function setupSQLite() {
 
 async function benchmarkSQLite() {
   const startTime = performance.now();
-  const query = `
-    SELECT
-      c.customer_name,
-      SUM(od.quantity * p.unit_price) as total_spent,
-      COUNT(o.order_id) as order_count
-    FROM customers c
-    JOIN orders o ON c.customer_id = o.customer_id
-    JOIN order_details od ON o.order_id = od.order_id
-    JOIN products p ON od.product_id = p.product_id
-    JOIN countries ct ON c.country_id = ct.country_id
-    WHERE ct.region_id = 1
-    GROUP BY c.customer_id
-    ORDER BY total_spent DESC
-    LIMIT 5;
-  `;
-  const result = await db.query(query);
+
+  // Kysely Query Builder
+  const result = await db
+    .selectFrom("customers as c")
+    .innerJoin("orders as o", "c.customer_id", "o.customer_id")
+    .innerJoin("order_details as od", "o.order_id", "od.order_id")
+    .innerJoin("products as p", "od.product_id", "p.product_id")
+    .innerJoin("countries as ct", "c.country_id", "ct.country_id")
+    .where("ct.region_id", "=", 1)
+    .select([
+      "c.customer_name",
+      (eb) =>
+        eb.fn.sum(sql<number>`od.quantity * p.unit_price`).as("total_spent"),
+      (eb) => eb.fn.count("o.order_id").as("order_count"),
+    ])
+    .groupBy("c.customer_id")
+    .orderBy("total_spent", "desc")
+    .limit(5)
+    .execute();
+
   const endTime = performance.now();
 
   if (!benchmarkResults.value) return;
 
   benchmarkResults.value.sqlite.time = (endTime - startTime).toFixed(2);
-  benchmarkResults.value.sqlite.data = result.values;
+  benchmarkResults.value.sqlite.data = result;
 }
 
 // --- IndexedDB Implementation ---
@@ -649,13 +684,20 @@ async function clearSQLite() {
   isClearingSQLite.value = true;
   setupMessage.value = "Clearing SQLite database...";
   try {
-    // It's crucial to close any existing connection before trying to delete the database.
-    // This prevents file lock issues.
-    if (db && (await db.isDBOpen())) {
-      await db.close();
+    // Get raw connection to close it before deletion
+    try {
+      const conn = await getRawConnection();
+      if (await conn.isDBOpen()) {
+        await conn.close();
+      }
+    } catch (e) {
+      // Connection might not exist yet, that's ok
     }
 
-    // Use the main plugin method to delete the database file from storage.
+    // Delete the database file
+    // Note: capacitor-sqlite-kysely manages the connection,
+    // but we still need SQLiteConnection for deletion
+    const { sqlite } = await import("@/shared/services/database");
     await sqlite.deleteOldDatabases("benchmarkDB");
 
     // After clearing, the setup is no longer considered complete
