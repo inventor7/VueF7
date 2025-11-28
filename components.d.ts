@@ -9,6 +9,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     About: typeof import('./src/modules/about/views/About.vue')['default']
+    DatabaseManagement: typeof import('./src/modules/home/components/DatabaseManagement.vue')['default']
+    DatabaseSchemaSetup: typeof import('./src/modules/home/components/DatabaseSchemaSetup.vue')['default']
+    DataInsertion: typeof import('./src/modules/home/components/DataInsertion.vue')['default']
     F7App: typeof import('framework7-vue')['f7App']
     F7Badge: typeof import('framework7-vue')['f7Badge']
     F7Block: typeof import('framework7-vue')['f7Block']
@@ -24,5 +27,6 @@ declare module 'vue' {
     F7Views: typeof import('framework7-vue')['f7Views']
     Home: typeof import('./src/modules/home/views/Home.vue')['default']
     HomePanel: typeof import('./src/modules/home/views/Home/HomePanel.vue')['default']
+    PerformanceDashboard: typeof import('./src/modules/home/components/PerformanceDashboard.vue')['default']
   }
 }

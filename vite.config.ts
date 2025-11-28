@@ -22,6 +22,9 @@ const PUBLIC_DIR = path.resolve(__dirname, "./public");
 const BUILD_DIR = path.resolve(__dirname, "./dist");
 
 export default defineConfig({
+  optimizeDeps: {
+    exclude: ["@journeyapps/wa-sqlite", "@powersync/web"],
+  },
   plugins: [
     vue({
       template: {
@@ -113,6 +116,10 @@ export default defineConfig({
     outDir: BUILD_DIR,
     assetsInlineLimit: 0,
     emptyOutDir: true,
+  },
+
+  worker: {
+    format: "es",
   },
 
   resolve: {

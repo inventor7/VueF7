@@ -38,6 +38,24 @@ importers:
       '@iconify-json/material-symbols':
         specifier: ^1.2.40
         version: 1.2.40
+      '@journeyapps/wa-sqlite':
+        specifier: ^1.3.3
+        version: 1.3.3
+      '@powersync/capacitor':
+        specifier: ^0.1.3
+        version: 0.1.3(@capacitor-community/sqlite@7.0.2(@capacitor/core@7.4.3))(@powersync/web@1.29.1(@journeyapps/wa-sqlite@1.3.3)(@powersync/common@1.43.1))
+      '@powersync/kysely-driver':
+        specifier: ^1.3.1
+        version: 1.3.1(@powersync/common@1.43.1)
+      '@powersync/vue':
+        specifier: ^0.4.1
+        version: 0.4.1(@powersync/common@1.43.1)(vue@3.5.22(typescript@5.9.2))
+      '@powersync/web':
+        specifier: ^1.29.1
+        version: 1.29.1(@journeyapps/wa-sqlite@1.3.3)(@powersync/common@1.43.1)
+      '@supabase/supabase-js':
+        specifier: ^2.86.0
+        version: 2.86.0
       '@tailwindcss/vite':
         specifier: ^4.1.13
         version: 4.1.13(vite@7.1.7(@types/node@24.5.2)(jiti@2.6.0)(less@4.4.1)(lightningcss@1.30.1)(yaml@2.8.1))
@@ -47,9 +65,6 @@ importers:
       '@vueuse/core':
         specifier: ^13.9.0
         version: 13.9.0(vue@3.5.22(typescript@5.9.2))
-      capacitor-sqlite-kysely:
-        specifier: ^1.0.2
-        version: 1.0.2(@capacitor/core@7.4.3)(kysely@0.28.8)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -68,9 +83,6 @@ importers:
       framework7-vue:
         specifier: ^8.3.4
         version: 8.3.4
-      jeep-sqlite:
-        specifier: ^2.8.0
-        version: 2.8.0
       kysely:
         specifier: ^0.28.8
         version: 0.28.8
@@ -86,9 +98,6 @@ importers:
       skeleton-elements:
         specifier: ^4.0.1
         version: 4.0.1
-      sql.js:
-        specifier: ^1.13.0
-        version: 1.13.0
       swiper:
         specifier: ^12.0.2
         version: 12.0.2
@@ -973,6 +982,9 @@ packages:
     resolution: {integrity: sha512-wgm9Ehl2jpeqP3zw/7mo3kRHFp5MEDhqAdwy1fTGkHAwnkGOVsgpvQhL8B5n1qlb01jV3n/bI0ZfZp5lWA1k4w==}
     engines: {node: '>=18.0.0'}
 
+  '@journeyapps/wa-sqlite@1.3.3':
+    resolution: {integrity: sha512-LwekcI0eSLVwNTt6r5j2GdYfA4aCCRnRmVhnrIRz6Tet8Ih6OPqQ4ae6xYXFBGTpw54jexHqwMcOQFTOOvTNIw==}
+
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
 
@@ -1205,6 +1217,33 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
+  '@powersync/capacitor@0.1.3':
+    resolution: {integrity: sha512-45M5k7lceUgZQ8ggCyBkEk35/5VkUV9Y8wkZ53WKvpjXX7FHXUBGQ+vppaBeBdsnSoPV0F5AQmbOfrNymQRMkA==}
+    peerDependencies:
+      '@capacitor-community/sqlite': ^7.0.2
+      '@powersync/web': ^1.28.2
+
+  '@powersync/common@1.43.1':
+    resolution: {integrity: sha512-Or4riEfRPazEvcO7yvyNymhGnRguDJJRwKPsgkCle4Y13YMEvhdLY3Gfevk5lxhTsqlpIIR5J2/MfJLYo9zDnQ==}
+
+  '@powersync/kysely-driver@1.3.1':
+    resolution: {integrity: sha512-uBor90Rij6J1n8YrXfJcPHi1r/1oJ+q+OwcwCUBqRJnpKYCJCX6J0Si/lt2E/LPcSewhF/XCk7Q/i1VFWAwDUg==}
+    peerDependencies:
+      '@powersync/common': ^1.41.1
+
+  '@powersync/vue@0.4.1':
+    resolution: {integrity: sha512-Pgz3aQvoYpBiI5eCeR1Ubvzr7LQ/RZwxJaTZcddT0Z63R5nyWcB6nOQx/J1cNiSX3QpoWacTPZf6mMzMVvFgMQ==}
+    peerDependencies:
+      '@powersync/common': ^1.41.1
+      vue: '*'
+
+  '@powersync/web@1.29.1':
+    resolution: {integrity: sha512-OJ4WNsZch6xXFL1oho4GY4voecboBPj+0WY1M1TriuAhIn5lF2+zdiEnTnalWU+g8fhTLkwTxVmK3cU0RfWgrA==}
+    hasBin: true
+    peerDependencies:
+      '@journeyapps/wa-sqlite': ^1.3.2
+      '@powersync/common': ^1.43.1
+
   '@rolldown/pluginutils@1.0.0-beta.29':
     resolution: {integrity: sha512-NIJgOsMjbxAXvoGq/X0gD7VPMQ8j9g0BiDaNjVNVjvl+iKXxL3Jre0v31RmBYeLEmkbj2s02v8vFTbUXi5XS2Q==}
 
@@ -1386,6 +1425,30 @@ packages:
     resolution: {integrity: sha512-rSDzGUfi58X8K79ySjlM6KlY+mq7D+ittzgNAdYHcsXHc70sBpdatFhnbOg25uVDiMf7xRAH9slP38pPdXnZOQ==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
+
+  '@supabase/auth-js@2.86.0':
+    resolution: {integrity: sha512-3xPqMvBWC6Haqpr6hEWmSUqDq+6SA1BAEdbiaHdAZM9QjZ5uiQJ+6iD9pZOzOa6MVXZh4GmwjhC9ObIG0K1NcA==}
+    engines: {node: '>=20.0.0'}
+
+  '@supabase/functions-js@2.86.0':
+    resolution: {integrity: sha512-AlOoVfeaq9XGlBFIyXTmb+y+CZzxNO4wWbfgRM6iPpNU5WCXKawtQYSnhivi3UVxS7GA0rWovY4d6cIAxZAojA==}
+    engines: {node: '>=20.0.0'}
+
+  '@supabase/postgrest-js@2.86.0':
+    resolution: {integrity: sha512-QVf+wIXILcZJ7IhWhWn+ozdf8B+oO0Ulizh2AAPxD/6nQL+x3r9lJ47a+fpc/jvAOGXMbkeW534Kw6jz7e8iIA==}
+    engines: {node: '>=20.0.0'}
+
+  '@supabase/realtime-js@2.86.0':
+    resolution: {integrity: sha512-dyS8bFoP29R/sj5zLi0AP3JfgG8ar1nuImcz5jxSx7UIW7fbFsXhUCVrSY2Ofo0+Ev6wiATiSdBOzBfWaiFyPA==}
+    engines: {node: '>=20.0.0'}
+
+  '@supabase/storage-js@2.86.0':
+    resolution: {integrity: sha512-PM47jX/Mfobdtx7NNpoj9EvlrkapAVTQBZgGGslEXD6NS70EcGjhgRPBItwHdxZPM5GwqQ0cGMN06uhjeY2mHQ==}
+    engines: {node: '>=20.0.0'}
+
+  '@supabase/supabase-js@2.86.0':
+    resolution: {integrity: sha512-BaC9sv5+HGNy1ulZwY8/Ev7EjfYYmWD4fOMw9bDBqTawEj6JHAiOHeTwXLRzVaeSay4p17xYLN2NSCoGgXMQnw==}
+    engines: {node: '>=20.0.0'}
 
   '@swc/cli@0.7.8':
     resolution: {integrity: sha512-27Ov4rm0s2C6LLX+NDXfDVB69LGs8K94sXtFhgeUyQ4DBywZuCgTBu2loCNHRr8JhT9DeQvJM5j9FAu/THbo4w==}
@@ -1596,11 +1659,17 @@ packages:
   '@types/node@24.5.2':
     resolution: {integrity: sha512-FYxk1I7wPv3K2XBaoyH2cTnocQEu8AOZ60hPbsyukMPLv5/5qr7V1i8PLHdl6Zf87I+xZXFvPCXYjiTFq+YSDQ==}
 
+  '@types/phoenix@1.6.6':
+    resolution: {integrity: sha512-PIzZZlEppgrpoT2QgbnDU+MMzuR6BbCjllj0bM70lWoejMeNJAxCchxnv7J3XFkI8MpygtRpzXrIlmWUBclP5A==}
+
   '@types/slice-ansi@4.0.0':
     resolution: {integrity: sha512-+OpjSaq85gvlZAYINyzKpLeiFkSC4EsC6IIiT6v6TLSU5k5U83fHGj9Lel8oKEXM0HqgrMVCjXPDPVICtxF7EQ==}
 
   '@types/web-bluetooth@0.0.21':
     resolution: {integrity: sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA==}
+
+  '@types/ws@8.18.1':
+    resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
 
   '@typescript-eslint/project-service@8.44.1':
     resolution: {integrity: sha512-ycSa60eGg8GWAkVsKV4E6Nz33h+HjTXbsDT4FILyL8Obk5/mx4tbvCNsLf9zret3ipSumAOG89UcCs/KRaKYrA==}
@@ -1861,6 +1930,12 @@ packages:
     resolution: {integrity: sha512-hsU18Ae8CDTR6Kgu9DYf0EbCr/a5iGL0rytQDobUcdpYOKokk8LEjVphnXkDkgpi0wYVsqrXuP0bZxJaTqdgoA==}
     engines: {node: '>= 0.4'}
 
+  async-lock@1.4.1:
+    resolution: {integrity: sha512-Az2ZTpuytrtqENulXwO3GGv1Bztugx6TT37NIo7imr/Qo0gsYiGtSdBa2B6fsXhTpVZDNfu1Qn3pk531e3q+nQ==}
+
+  async-mutex@0.5.0:
+    resolution: {integrity: sha512-1A94B18jkJ3DYq284ohPxoXbfTA5HsQ7/Mf4DEhcyLx3Bz27Rh59iScbB6EPiP+B+joue6YCxcMXSbFC1tZKwA==}
+
   at-least-node@1.0.0:
     resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
     engines: {node: '>= 4.0.0'}
@@ -1941,6 +2016,10 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  bson@6.10.4:
+    resolution: {integrity: sha512-WIsKqkSC0ABoBJuT1LEX+2HEvNmNKKgnTAyd0fL8qzK4SH2i9NXg+t08YtdZp/V9IZ33cxe3iV4yM0qg8lMQng==}
+    engines: {node: '>=16.20.1'}
+
   buffer-crc32@0.2.13:
     resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
 
@@ -1977,12 +2056,6 @@ packages:
 
   caniuse-lite@1.0.30001745:
     resolution: {integrity: sha512-ywt6i8FzvdgrrrGbr1jZVObnVv6adj+0if2/omv9cmR2oiZs30zL4DIyaptKcbOrBdOIc74QTMoJvSE2QHh5UQ==}
-
-  capacitor-sqlite-kysely@1.0.2:
-    resolution: {integrity: sha512-6TCikYQtCtfLIwDCKP/ZgFybMzlWzs+sdWIFG0ezVSf3kQnarWmOQBAw+yFfmc4aa2zCDYefnBFxX8oOSNawDA==}
-    peerDependencies:
-      '@capacitor/core': '>=5.0.0'
-      kysely: '>=0.26.0'
 
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -2035,6 +2108,9 @@ packages:
 
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+
+  comlink@4.4.2:
+    resolution: {integrity: sha512-OxGdvBmJuNKSCMO4NTl1L47VRp6xn2wG4F/2hYzB6tiCb709otOxtEYCSvK80PtjODfXXZu8ds+Nw5kVCjqd2g==}
 
   commander@12.1.0:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
@@ -2399,6 +2475,9 @@ packages:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
 
+  event-iterator@2.0.0:
+    resolution: {integrity: sha512-KGft0ldl31BZVV//jj+IAIGCxkvvUkkON+ScH6zfoX+l+omX6001ggyRSpI0Io2Hlro0ThXotswCtfzS8UkIiQ==}
+
   events-universal@1.0.1:
     resolution: {integrity: sha512-LUd5euvbMLpwOF8m6ivPCbhQeSiYVNb8Vs0fQ8QjXo0JTkEHpz8pxdQf0gStltaPpw0Cca8b39KxvK9cfKRiAw==}
 
@@ -2674,6 +2753,10 @@ packages:
   human-signals@8.0.1:
     resolution: {integrity: sha512-eKCa6bwnJhvxj14kZk5NCPc6Hb6BdsU9DZcOnmQKSnO1VKrfV0zCvtttPZUsBvjmNDn8rpcJfpwSYnHBjc95MQ==}
     engines: {node: '>=18.18.0'}
+
+  iceberg-js@0.8.0:
+    resolution: {integrity: sha512-kmgmea2nguZEvRqW79gDqNXyxA3OS5WIgMVffrHpqXV4F/J4UmNIw2vstixioLTNSkd5rFB8G0s3Lwzogm6OFw==}
+    engines: {node: '>=20.0.0'}
 
   iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
@@ -4397,6 +4480,18 @@ packages:
     resolution: {integrity: sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==}
     engines: {node: '>=12'}
 
+  ws@8.18.3:
+    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   wsl-utils@0.1.0:
     resolution: {integrity: sha512-h3Fbisa2nKGPxCpm89Hk33lBLsnaGBvctQopaBSOW/uIs6FTe1ATyAnKFJrzVs9vpGdsTe73WF3V4lIsk4Gacw==}
     engines: {node: '>=18'}
@@ -5304,6 +5399,8 @@ snapshots:
     dependencies:
       minipass: 7.1.2
 
+  '@journeyapps/wa-sqlite@1.3.3': {}
+
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
@@ -5465,6 +5562,36 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
+  '@powersync/capacitor@0.1.3(@capacitor-community/sqlite@7.0.2(@capacitor/core@7.4.3))(@powersync/web@1.29.1(@journeyapps/wa-sqlite@1.3.3)(@powersync/common@1.43.1))':
+    dependencies:
+      '@capacitor-community/sqlite': 7.0.2(@capacitor/core@7.4.3)
+      '@powersync/web': 1.29.1(@journeyapps/wa-sqlite@1.3.3)(@powersync/common@1.43.1)
+      async-lock: 1.4.1
+
+  '@powersync/common@1.43.1':
+    dependencies:
+      async-mutex: 0.5.0
+      event-iterator: 2.0.0
+
+  '@powersync/kysely-driver@1.3.1(@powersync/common@1.43.1)':
+    dependencies:
+      '@powersync/common': 1.43.1
+      kysely: 0.28.8
+
+  '@powersync/vue@0.4.1(@powersync/common@1.43.1)(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@powersync/common': 1.43.1
+      vue: 3.5.22(typescript@5.9.2)
+
+  '@powersync/web@1.29.1(@journeyapps/wa-sqlite@1.3.3)(@powersync/common@1.43.1)':
+    dependencies:
+      '@journeyapps/wa-sqlite': 1.3.3
+      '@powersync/common': 1.43.1
+      async-mutex: 0.5.0
+      bson: 6.10.4
+      comlink: 4.4.2
+      commander: 12.1.0
+
   '@rolldown/pluginutils@1.0.0-beta.29': {}
 
   '@rollup/pluginutils@5.3.0(rollup@4.52.2)':
@@ -5583,6 +5710,44 @@ snapshots:
       '@rollup/rollup-linux-x64-musl': 4.34.9
       '@rollup/rollup-win32-arm64-msvc': 4.34.9
       '@rollup/rollup-win32-x64-msvc': 4.34.9
+
+  '@supabase/auth-js@2.86.0':
+    dependencies:
+      tslib: 2.8.1
+
+  '@supabase/functions-js@2.86.0':
+    dependencies:
+      tslib: 2.8.1
+
+  '@supabase/postgrest-js@2.86.0':
+    dependencies:
+      tslib: 2.8.1
+
+  '@supabase/realtime-js@2.86.0':
+    dependencies:
+      '@types/phoenix': 1.6.6
+      '@types/ws': 8.18.1
+      tslib: 2.8.1
+      ws: 8.18.3
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@supabase/storage-js@2.86.0':
+    dependencies:
+      iceberg-js: 0.8.0
+      tslib: 2.8.1
+
+  '@supabase/supabase-js@2.86.0':
+    dependencies:
+      '@supabase/auth-js': 2.86.0
+      '@supabase/functions-js': 2.86.0
+      '@supabase/postgrest-js': 2.86.0
+      '@supabase/realtime-js': 2.86.0
+      '@supabase/storage-js': 2.86.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@swc/cli@0.7.8(@swc/core@1.13.5)':
     dependencies:
@@ -5758,9 +5923,15 @@ snapshots:
     dependencies:
       undici-types: 7.12.0
 
+  '@types/phoenix@1.6.6': {}
+
   '@types/slice-ansi@4.0.0': {}
 
   '@types/web-bluetooth@0.0.21': {}
+
+  '@types/ws@8.18.1':
+    dependencies:
+      '@types/node': 24.5.2
 
   '@typescript-eslint/project-service@8.44.1(typescript@5.9.2)':
     dependencies:
@@ -6136,6 +6307,12 @@ snapshots:
 
   async-function@1.0.0: {}
 
+  async-lock@1.4.1: {}
+
+  async-mutex@0.5.0:
+    dependencies:
+      tslib: 2.8.1
+
   at-least-node@1.0.0: {}
 
   autoprefixer@10.4.21(postcss@8.5.6):
@@ -6208,6 +6385,8 @@ snapshots:
       node-releases: 2.0.21
       update-browserslist-db: 1.1.3(browserslist@4.26.2)
 
+  bson@6.10.4: {}
+
   buffer-crc32@0.2.13: {}
 
   buffer@5.7.1:
@@ -6251,11 +6430,6 @@ snapshots:
   callsites@3.1.0: {}
 
   caniuse-lite@1.0.30001745: {}
-
-  capacitor-sqlite-kysely@1.0.2(@capacitor/core@7.4.3)(kysely@0.28.8):
-    dependencies:
-      '@capacitor/core': 7.4.3
-      kysely: 0.28.8
 
   chalk@2.4.2:
     dependencies:
@@ -6309,6 +6483,8 @@ snapshots:
   color-name@1.1.3: {}
 
   color-name@1.1.4: {}
+
+  comlink@4.4.2: {}
 
   commander@12.1.0: {}
 
@@ -6761,6 +6937,8 @@ snapshots:
 
   esutils@2.0.3: {}
 
+  event-iterator@2.0.0: {}
+
   events-universal@1.0.1:
     dependencies:
       bare-events: 2.7.0
@@ -7077,6 +7255,8 @@ snapshots:
   human-signals@2.1.0: {}
 
   human-signals@8.0.1: {}
+
+  iceberg-js@0.8.0: {}
 
   iconv-lite@0.6.3:
     dependencies:
@@ -8903,6 +9083,8 @@ snapshots:
       ansi-styles: 6.2.3
       string-width: 5.1.2
       strip-ansi: 7.1.2
+
+  ws@8.18.3: {}
 
   wsl-utils@0.1.0:
     dependencies:

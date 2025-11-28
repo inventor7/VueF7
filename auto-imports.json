@@ -1667,45 +1667,9 @@
     "as": "f7router"
   },
   {
-    "name": "RegionTable",
-    "as": "RegionTable",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
-    "type": true,
-    "__source": "dir"
-  },
-  {
-    "name": "CountryTable",
-    "as": "CountryTable",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
-    "type": true,
-    "__source": "dir"
-  },
-  {
-    "name": "CustomerTable",
-    "as": "CustomerTable",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
-    "type": true,
-    "__source": "dir"
-  },
-  {
-    "name": "OrderTable",
-    "as": "OrderTable",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
-    "type": true,
-    "__source": "dir"
-  },
-  {
-    "name": "ProductTable",
-    "as": "ProductTable",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
-    "type": true,
-    "__source": "dir"
-  },
-  {
-    "name": "OrderDetailTable",
-    "as": "OrderDetailTable",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/database/schema.ts",
-    "type": true,
+    "name": "useDatabaseBenchmarkState",
+    "as": "useDatabaseBenchmarkState",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/composables/useDatabaseBenchmark.ts",
     "__source": "dir"
   },
   {
@@ -1719,6 +1683,18 @@
     "name": "default",
     "as": "routes",
     "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/router/routes/index.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "useAuthStore",
+    "as": "useAuthStore",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/stores/auth.stores.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "useGroupsStore",
+    "as": "useGroupsStore",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/modules/home/stores/groupes.stores.ts",
     "__source": "dir"
   },
   {
@@ -1765,8 +1741,8 @@
   },
   {
     "name": "default",
-    "as": "sqlLitePlugin",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/sqlLite.plugin.ts",
+    "as": "powersyncPlugin",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/plugins/powersync.plugin.ts",
     "__source": "dir"
   },
   {
@@ -1853,15 +1829,14 @@
     "__source": "dir"
   },
   {
-    "name": "Database",
-    "as": "Database",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/database.schema.ts",
-    "type": true,
+    "name": "default",
+    "as": "database",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/index.ts",
     "__source": "dir"
   },
   {
-    "name": "sqlite",
-    "as": "sqlite",
+    "name": "powerSync",
+    "as": "powerSync",
     "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/index.ts",
     "__source": "dir"
   },
@@ -1872,9 +1847,70 @@
     "__source": "dir"
   },
   {
-    "name": "getRawConnection",
-    "as": "getRawConnection",
-    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/index.ts",
+    "name": "default",
+    "as": "initializerDatabase",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/initializer.database.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "default",
+    "as": "loggerDatabase",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/logger.database.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "AppSchema",
+    "as": "AppSchema",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/schema.database.ts",
+    "__source": "dir"
+  },
+  {
+    "name": "RegionTable",
+    "as": "RegionTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/schema.database.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "CountryTable",
+    "as": "CountryTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/schema.database.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "CustomerTable",
+    "as": "CustomerTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/schema.database.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "OrderTable",
+    "as": "OrderTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/schema.database.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "ProductTable",
+    "as": "ProductTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/schema.database.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "OrderDetailTable",
+    "as": "OrderDetailTable",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/schema.database.ts",
+    "type": true,
+    "__source": "dir"
+  },
+  {
+    "name": "Database",
+    "as": "Database",
+    "from": "C:/Users/PC/code/ayb/VueF7/src/shared/services/database/schema.database.ts",
+    "type": true,
     "__source": "dir"
   },
   {

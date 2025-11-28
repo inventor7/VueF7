@@ -9,6 +9,7 @@ declare global {
   const Anonymous: typeof import("./src/views/Anonymous.vue")["default"]
   const App: typeof import("./src/App.vue")["default"]
   const AppContextKey: typeof import('./src/shared/composables/theme/useAppTheme')['AppContextKey']
+  const AppSchema: typeof import('./src/shared/services/database/schema.database')['AppSchema']
   const Auth: typeof import('./src/shared/services/auth/auth.service')['Auth']
   const Authenticated: typeof import("./src/views/Authenticated.vue")["default"]
   const AuthenticatedAbout: typeof import("./src/views/Authenticated/AuthenticatedAbout.vue")["default"]
@@ -16,6 +17,7 @@ declare global {
   const Dom7: typeof import('framework7/lite')['Dom7']
   const EffectScope: typeof import('vue')['EffectScope']
   const Framework7VueResolver: typeof import('./src/shared/utils/resolvers/resolvers')['Framework7VueResolver']
+  const SupabaseConnector: typeof import('./src/shared/services/database/connector.database')['SupabaseConnector']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const anonymousRoutes: typeof import("./src/router/routes/anonymous.routes")["default"]
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -43,6 +45,8 @@ declare global {
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
   const customRef: typeof import('vue')['customRef']
+  const database: typeof import('./src/shared/services/database/index')['default']
+  const databaseConnector: typeof import('./src/shared/services/database/connector.database')['databaseConnector']
   const db: typeof import('./src/shared/services/database/index')['db']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
@@ -72,6 +76,8 @@ declare global {
   const h: typeof import('vue')['h']
   const i18nPlugin: typeof import('./src/plugins/i18n.plugin')['default']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
+  const initDatabase: typeof import('./src/shared/services/database/index')['initDatabase']
+  const initializerDatabase: typeof import('./src/shared/services/database/initializer.database')['default']
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
   const isDefined: typeof import('@vueuse/core')['isDefined']
@@ -80,6 +86,7 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const isShallow: typeof import('vue')['isShallow']
+  const loggerDatabase: typeof import('./src/shared/services/database/logger.database')['default']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapActions: typeof import('pinia')['mapActions']
   const mapGetters: typeof import('pinia')['mapGetters']
@@ -111,6 +118,8 @@ declare global {
   const onWatcherCleanup: typeof import('vue')['onWatcherCleanup']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const piniaPlugin: typeof import('./src/plugins/pinia.plugin')['default']
+  const powerSync: typeof import('./src/shared/services/database/index')['powerSync']
+  const powersyncPlugin: typeof import('./src/plugins/powersync.plugin')['default']
   const productRoutes: typeof import("./src/router/routes/product.routes")["default"]
   const products: typeof import("./src/shared/stores/fake/products.fake")["products"]
   const provide: typeof import('vue')['provide']
@@ -183,6 +192,7 @@ declare global {
   const useAsyncState: typeof import('@vueuse/core')['useAsyncState']
   const useAttrs: typeof import('vue')['useAttrs']
   const useAuthGuard: typeof import('./src/router/guards/useAuth.guard')['useAuthGuard']
+  const useAuthStore: typeof import('./src/modules/home/stores/auth.stores')['useAuthStore']
   const useBase64: typeof import('@vueuse/core')['useBase64']
   const useBattery: typeof import('@vueuse/core')['useBattery']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
@@ -204,6 +214,7 @@ declare global {
   const useCurrentElement: typeof import('@vueuse/core')['useCurrentElement']
   const useCycleList: typeof import('@vueuse/core')['useCycleList']
   const useDark: typeof import('@vueuse/core')['useDark']
+  const useDatabaseBenchmarkState: typeof import('./src/modules/home/composables/useDatabaseBenchmark')['useDatabaseBenchmarkState']
   const useDateFormat: typeof import('@vueuse/core')['useDateFormat']
   const useDebounce: typeof import('@vueuse/core')['useDebounce']
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
@@ -236,6 +247,7 @@ declare global {
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useGamepad: typeof import('@vueuse/core')['useGamepad']
   const useGeolocation: typeof import('@vueuse/core')['useGeolocation']
+  const useGroupsStore: typeof import('./src/modules/home/stores/groupes.stores')['useGroupsStore']
   const useI18n: typeof import('vue-i18n')['useI18n']
   const useId: typeof import('vue')['useId']
   const useIdle: typeof import('@vueuse/core')['useIdle']
@@ -367,7 +379,7 @@ declare global {
   export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
-  export type { RegionTable, CountryTable, CustomerTable, OrderTable, ProductTable, OrderDetailTable, HomeDatabaseSchema } from './src/modules/home/database/schema'
+  export type { HomeDatabaseSchema } from './src/modules/home/database/schema'
   import('./src/modules/home/database/schema')
   // @ts-ignore
   export type { AppTheme, AppMode, AppContext } from './src/shared/composables/theme/useAppTheme'
@@ -376,8 +388,8 @@ declare global {
   export type { Auth } from './src/shared/services/auth/auth.service'
   import('./src/shared/services/auth/auth.service')
   // @ts-ignore
-  export type { Database } from './src/shared/services/database/database.schema'
-  import('./src/shared/services/database/database.schema')
+  export type { RegionTable, CountryTable, CustomerTable, OrderTable, ProductTable, OrderDetailTable, Database } from './src/shared/services/database/schema.database'
+  import('./src/shared/services/database/schema.database')
 }
 
 // for vue template auto import
@@ -386,6 +398,7 @@ declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly AppContextKey: UnwrapRef<typeof import('./src/shared/composables/theme/useAppTheme')['AppContextKey']>
+    readonly AppSchema: UnwrapRef<typeof import('./src/shared/services/database/schema.database')['AppSchema']>
     readonly Auth: UnwrapRef<typeof import('./src/shared/services/auth/auth.service')['Auth']>
     readonly Dom7: UnwrapRef<typeof import('framework7/lite')['Dom7']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -414,6 +427,7 @@ declare module 'vue' {
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly database: UnwrapRef<typeof import('./src/shared/services/database/index')['default']>
     readonly db: UnwrapRef<typeof import('./src/shared/services/database/index')['db']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
@@ -434,11 +448,11 @@ declare module 'vue' {
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
     readonly getDevice: UnwrapRef<typeof import('framework7/lite')['getDevice']>
     readonly getFramework7AutoImports: UnwrapRef<typeof import('./src/shared/utils/resolvers/resolvers')['getFramework7AutoImports']>
-    readonly getRawConnection: UnwrapRef<typeof import('./src/shared/services/database/index')['getRawConnection']>
     readonly globalRoutes: UnwrapRef<typeof import('./src/router/global/global.routes')['default']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly i18nPlugin: UnwrapRef<typeof import('./src/plugins/i18n.plugin')['default']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
+    readonly initializerDatabase: UnwrapRef<typeof import('./src/shared/services/database/initializer.database')['default']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
@@ -447,6 +461,7 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
+    readonly loggerDatabase: UnwrapRef<typeof import('./src/shared/services/database/logger.database')['default']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
@@ -478,6 +493,8 @@ declare module 'vue' {
     readonly onWatcherCleanup: UnwrapRef<typeof import('vue')['onWatcherCleanup']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly piniaPlugin: UnwrapRef<typeof import('./src/plugins/pinia.plugin')['default']>
+    readonly powerSync: UnwrapRef<typeof import('./src/shared/services/database/index')['powerSync']>
+    readonly powersyncPlugin: UnwrapRef<typeof import('./src/plugins/powersync.plugin')['default']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
@@ -504,8 +521,6 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
-    readonly sqlLitePlugin: UnwrapRef<typeof import('./src/plugins/sqlLite.plugin')['default']>
-    readonly sqlite: UnwrapRef<typeof import('./src/shared/services/database/index')['sqlite']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
@@ -548,6 +563,7 @@ declare module 'vue' {
     readonly useAsyncState: UnwrapRef<typeof import('@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useAuthGuard: UnwrapRef<typeof import('./src/router/guards/useAuth.guard')['useAuthGuard']>
+    readonly useAuthStore: UnwrapRef<typeof import('./src/modules/home/stores/auth.stores')['useAuthStore']>
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
@@ -568,6 +584,7 @@ declare module 'vue' {
     readonly useCurrentElement: UnwrapRef<typeof import('@vueuse/core')['useCurrentElement']>
     readonly useCycleList: UnwrapRef<typeof import('@vueuse/core')['useCycleList']>
     readonly useDark: UnwrapRef<typeof import('@vueuse/core')['useDark']>
+    readonly useDatabaseBenchmarkState: UnwrapRef<typeof import('./src/modules/home/composables/useDatabaseBenchmark')['useDatabaseBenchmarkState']>
     readonly useDateFormat: UnwrapRef<typeof import('@vueuse/core')['useDateFormat']>
     readonly useDebounce: UnwrapRef<typeof import('@vueuse/core')['useDebounce']>
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
@@ -599,6 +616,7 @@ declare module 'vue' {
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
+    readonly useGroupsStore: UnwrapRef<typeof import('./src/modules/home/stores/groupes.stores')['useGroupsStore']>
     readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>

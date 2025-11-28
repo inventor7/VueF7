@@ -49,6 +49,7 @@
 <script setup lang="ts">
 import capacitorApp from "./plugins/capacitor.plugin";
 import { framework7 } from "./plugins/framework7.plugin";
+import databaseInitializer from "./shared/services/database/initializer.database";
 
 const device = getDevice();
 const f7Params = framework7();
@@ -62,9 +63,13 @@ const showToolbar = computed(() => {
 });
 
 onMounted(() => {
-  f7ready(() => {
+  f7ready(async () => {
+  
+
     if (device.capacitor) {
       capacitorApp.init(f7);
+        // Initialize database on all platforms
+    await databaseInitializer();
     }
 
     const router = f7.views.main?.router;
