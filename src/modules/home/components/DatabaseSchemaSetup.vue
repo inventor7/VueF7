@@ -2,21 +2,15 @@
   <F7BlockTitle>Database Schema Setup</F7BlockTitle>
   <F7Block strong class="!rounded-2xl">
     <p>
-      First, set up the database schemas. This will create a complex schema
-      of 10+ tables. This step may take a moment.
+      First, set up the database schemas. This will create a complex schema of
+      10+ tables. This step may take a moment.
     </p>
     <div class="grid grid-cols-2 gap-4 mb-4">
-      <F7Button
-        fill
-        @click="setupSQLite"
-        :loading="isSettingUpSQLite"
-        >Setup SQLite Schema</F7Button
+      <F7Button fill @click="setupSQLite" :loading="isSettingUpSQLite"
+        >SQLite Schema</F7Button
       >
-      <F7Button
-        fill
-        @click="setupIndexedDB"
-        :loading="isSettingUpIndexedDB"
-        >Setup IndexedDB Schema</F7Button
+      <F7Button fill @click="setupIndexedDB" :loading="isSettingUpIndexedDB"
+        >IndexedDB Schema</F7Button
       >
     </div>
     <div v-if="setupMessage" class="mt-4 text-center text-gray-500">
@@ -45,10 +39,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { Capacitor } from '@capacitor/core';
-import { sql } from 'kysely';
-import { db, powerSync } from '@/shared/services/database';
+import { ref, computed } from "vue";
+import { Capacitor } from "@capacitor/core";
+import { sql } from "kysely";
+import { db, powerSync } from "@/shared/services/database";
 
 // Props to receive shared state
 interface Props {
@@ -72,13 +66,13 @@ const props = defineProps<Props>();
 
 // Emit events for state changes
 const emit = defineEmits([
-  'update:is-setting-up-sqlite',
-  'update:is-setting-up-indexeddb',
-  'update:is-schema-created',
-  'update:setup-message',
-  'update:setup-timings',
-  'sqlite-schema-complete',
-  'indexeddb-schema-complete'
+  "update:is-setting-up-sqlite",
+  "update:is-setting-up-indexeddb",
+  "update:is-schema-created",
+  "update:setup-message",
+  "update:setup-timings",
+  "sqlite-schema-complete",
+  "indexeddb-schema-complete",
 ]);
 
 const NUM_REGIONS = 5;
@@ -94,21 +88,21 @@ let idbConnection: IDBDatabase;
 // --- SQLite Schema Creation ---
 async function setupSQLite() {
   if (props.isSettingUpSQLite) return;
-  emit('update:is-setting-up-sqlite', true);
-  emit('update:setup-message', "Setting up SQLite...");
+  emit("update:is-setting-up-sqlite", true);
+  emit("update:setup-message", "Setting up SQLite...");
   const startTime = performance.now();
 
   try {
     // Completely wipe the existing OPFS database
-    emit('update:setup-message', "Deleting existing OPFS database...");
+    emit("update:setup-message", "Deleting existing OPFS database...");
     //await powerSync.disconnectAndClear();
 
     // Re-initialize PowerSync Database
-    emit('update:setup-message', "Initializing fresh PowerSync database...");
+    emit("update:setup-message", "Initializing fresh PowerSync database...");
     await powerSync.init();
 
     // Create tables with both id (UUID) and integer columns - in a transaction
-    emit('update:setup-message', "Creating database schema...");
+    emit("update:setup-message", "Creating database schema...");
     const schemaStartTime = performance.now();
 
     await powerSync.writeTransaction(async (tx) => {
@@ -172,18 +166,21 @@ async function setupSQLite() {
       ...props.setupTimings,
       sqlite: {
         ...props.setupTimings.sqlite,
-        schema: schemaTime
-      }
+        schema: schemaTime,
+      },
     };
-    emit('update:setup-timings', updatedTimings);
-    emit('update:setup-message', `SQLite schema created in ${schemaTime}ms. Tables ready! Click 'Insert Data' to populate.`);
-    emit('update:is-schema-created', true);
-    emit('sqlite-schema-complete');
+    emit("update:setup-timings", updatedTimings);
+    emit(
+      "update:setup-message",
+      `SQLite schema created in ${schemaTime}ms. Tables ready! Click 'Insert Data' to populate.`
+    );
+    emit("update:is-schema-created", true);
+    emit("sqlite-schema-complete");
   } catch (err: any) {
     console.error("SQLite schema creation error:", err);
-    emit('update:setup-message', `Error: ${err.message ?? err}`);
+    emit("update:setup-message", `Error: ${err.message ?? err}`);
   } finally {
-    emit('update:is-setting-up-sqlite', false);
+    emit("update:is-setting-up-sqlite", false);
   }
 }
 
@@ -191,8 +188,8 @@ async function setupSQLite() {
 function setupIndexedDB() {
   return new Promise((resolve, reject) => {
     if (props.isSettingUpIndexedDB) return;
-    emit('update:is-setting-up-indexeddb', true);
-    emit('update:setup-message', "Setting up IndexedDB...");
+    emit("update:is-setting-up-indexeddb", true);
+    emit("update:setup-message", "Setting up IndexedDB...");
     const startTime = performance.now();
 
     const deleteRequest = window.indexedDB.deleteDatabase("benchmarkIDB");
@@ -232,30 +229,36 @@ function setupIndexedDB() {
           ...props.setupTimings,
           indexedDb: {
             ...props.setupTimings.indexedDb,
-            schema: schemaTime
-          }
+            schema: schemaTime,
+          },
         };
-        emit('update:setup-timings', updatedTimings);
-        emit('update:setup-message', `IndexedDB schema created in ${schemaTime}ms. Tables ready! Click 'Insert Data' to populate.`);
-        emit('update:is-schema-created', true);
-        emit('indexeddb-schema-complete');
+        emit("update:setup-timings", updatedTimings);
+        emit(
+          "update:setup-message",
+          `IndexedDB schema created in ${schemaTime}ms. Tables ready! Click 'Insert Data' to populate.`
+        );
+        emit("update:is-schema-created", true);
+        emit("indexeddb-schema-complete");
       };
 
       request.onsuccess = async (event) => {
         idbConnection = (event.target as IDBOpenDBRequest).result;
-        emit('update:setup-message', "IndexedDB schema creation complete. Click 'Insert IndexedDB Data' to populate.");
+        emit(
+          "update:setup-message",
+          "IndexedDB schema creation complete. Click 'Insert IndexedDB Data' to populate."
+        );
         const endTime = performance.now();
         resolve(true);
       };
       request.onerror = (event) => {
-        emit('update:is-setting-up-indexeddb', false);
-        emit('update:setup-message', `Error: ${request.error}`);
+        emit("update:is-setting-up-indexeddb", false);
+        emit("update:setup-message", `Error: ${request.error}`);
         reject(request.error);
       };
     };
     deleteRequest.onerror = (event) => {
-      emit('update:is-setting-up-indexeddb', false);
-      emit('update:setup-message', `Error: Could not delete old IndexedDB`);
+      emit("update:is-setting-up-indexeddb", false);
+      emit("update:setup-message", `Error: Could not delete old IndexedDB`);
       reject(deleteRequest.error);
     };
   });
